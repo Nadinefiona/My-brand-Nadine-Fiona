@@ -290,6 +290,29 @@ h1{
 .blogs .all-cards .blog-card img{
   width: 100%;
 }
+.blogs .all-cards .blog-card .statistics{
+  display: flex;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+.blogs .all-cards .blog-card .statistics div ion-icon{
+  color: #262C4D;
+  background: none;
+  border: none;
+  font-size: 30px;
+  padding: 0 1px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+.blogs .all-cards .blog-card .statistics input{
+  width: 50px;
+  border: none;
+  background: none;
+  font-size: 30px;
+  pointer-events: none;
+  margin: 0 2px;
+  color: #db2525;
+}
 
 /* contact */
 
@@ -340,24 +363,25 @@ h1{
 }
 
 .last{
-  background-color: #343D68;
+  background-color: #F5F5F5;
   color: white;
   border-color: transparent transparent #f0f0f0 transparent;
-  
 }
+
 .last .last-links{
   display: flex;
   justify-content: space-around;
   color: #ffffff;
-  padding: 8rem 5rem;
+  padding: 4rem 3rem;
+  margin-top: -23rem;
 }
 .last .last-links .social-media-links .title-icons{
   color: #ffffff;
-  font-size: 27px;
+  font-size: 20px;
 }
 .last .last-links .social-media-links .icons ion-icon{
   color: #ffffff;
-  font-size: 26px;
+  font-size: 35px;
   cursor: pointer;
   padding: 2rem 2rem 1rem 0rem;
 }
@@ -368,10 +392,12 @@ h1{
 .last .copyright{
   color: #ffffff;
   text-align: center;
+  padding-top: 6rem;
+
 }
 .last .last-links .github-link span ion-icon{
   color: #ffffff;
-  font-size: 40px;
+  font-size: 30px;
   padding-right: 1rem;
   cursor: pointer;
 }
@@ -408,21 +434,24 @@ h1{
   .hamburger {
     height: 5rem;
     width: 8rem;
-    top: 0rem;
+    /* top: 0rem;
     right: 5rem;
-    left: -3rem;
+    left: -3rem; */
+    left: 7rem;
     background-color: var(--color-secondary-m-2);
     padding: var(--padding-st-s-v);
     cursor: pointer;
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
-    gap: .5rem;
+    gap: 1rem;
     z-index: 10;
   }
-
+  
   .hamburger__line {
     height: 5px;
+    margin-top: .5rem;
     background-color:  #E84949;
   }
 
@@ -450,7 +479,7 @@ h1{
   }
 
   .hamburger__line-1 {
-    transform: rotate(45deg) translateX(1.7rem) translateY(-0.2rem);
+    transform: rotate(45deg) translateX(1rem) translateY(.6rem);
   }
 
   .hamburger__line-2 {
@@ -458,17 +487,23 @@ h1{
   }
 
   .hamburger__line-3 {
-    transform: rotate(-45deg) translateX(-0.2rem) translateY(-2.1rem);
+    transform: rotate(-45deg) translateX(.5rem) translateY(-.3rem);
   }
   .page{
     align-items: center;
-    padding: 1rem 5rem;
+    padding: 10rem 2rem 0 0rem;
   }  
   .personal-info {
-    flex-wrap: wrap-reverse; 
+    gap: 5rem;
+    margin-bottom: 3rem;
+    padding-left: 10rem;
+
   }
   .personal-info__content{
     flex-wrap: wrap;
+    margin-left: -10rem;
+    flex-basis: 100%;
+
   }
   .personal-info__content--experience {
     flex-wrap: wrap;
@@ -509,12 +544,12 @@ h1{
     z-index: 9;
   }
 
-  .hamburger {
+  /* .hamburger {
     height: 5rem;
-    width: 8rem;
-    top: 0rem;
+    width: 8rem; 
+    top: -2rem;
     right: 5rem;
-    left: -3rem;
+    left: 5rem;
     background-color: var(--color-secondary-m-2);
     padding: var(--padding-st-s-v);
     cursor: pointer;
@@ -523,12 +558,16 @@ h1{
     justify-content: flex-end;
     gap: .5rem;
     z-index: 10;
+    position: relative;
   }
-
+  /* .hamburger  div {
+    position: absolute;
+  } */
   .hamburger__line {
     height: 5px;
+    /* margin-top: -.5rem; */
     background-color:  #E84949;
-  }
+  } */
 
   .hamburger__line:first-child {
     width: 30%;
@@ -553,7 +592,7 @@ h1{
     transform: translateX(0);
   }
 
-  .hamburger__line-1 {
+  /* .hamburger__line-1 {
     transform: rotate(45deg) translateX(2rem) translateY(-0.5rem);
   }
 
@@ -563,28 +602,41 @@ h1{
 
   .hamburger__line-3 {
     transform: rotate(-45deg) translateX(-0.5rem) translateY(-2.6rem);
-  }
+  } */
   .page{
     flex-wrap: wrap-reverse;
     align-items: center;
-    padding: 1rem 5rem;
+    padding: 1rem 0rem;
     
   }
+  .page img{
+    padding-left: 1rem;
+  }
   .page .text{
-    padding: 1rem 2rem;
+    padding: 1rem 4rem;
   }
   .personal-info {
-    flex-wrap: wrap-reverse; 
+    flex-wrap: wrap-reverse;
+    gap: 5rem;
+    margin-bottom: 3rem;
+    padding-left: 7rem;
+
   }
   .personal-info__content{
     flex-wrap: wrap;
+    margin-left: -9rem;
+    flex-basis: 100%;
+
   }
   .personal-info__content--experience {
     flex-wrap: wrap;
   }
+  
   .portfolio .cards .card{
     flex-wrap: wrap;
     margin-bottom: 6rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
   }
   .portfolio .cards {
     display: block;
@@ -592,11 +644,23 @@ h1{
   .blogs .all-cards{
     display: block;
     flex-wrap: wrap;
-
+  }
+  .blogs .all-cards .blog-card{
+    margin: 5rem 2rem;
   }
   .contact .contact-page {
     display: block;
-    padding-left: 5rem ;
+    padding-left: 8rem ;
+  }
+  .contact .contact-page form{
+    padding: 5rem 0 3rem 0rem;
+  }
+  .contact .contact-page form input{
+    margin-bottom: 2rem;
+    padding: 1.2rem 23rem 1.2rem .8rem;
+  }
+  .contact .contact-page form button{
+    margin-left: 10rem;
   }
 
 }
@@ -621,12 +685,12 @@ h1{
       z-index: 9;
     }
   
-    .hamburger {
+    /* .hamburger {
       height: 5rem;
       width: 8rem;
-      top: -10rem;
+      top: -2rem;
       right: 5rem;
-      left: -3rem;
+      left: -4rem;
       background-color: var(--color-secondary-m-2);
       padding: var(--padding-st-s-v);
       cursor: pointer;
@@ -640,7 +704,7 @@ h1{
     .hamburger__line {
       height: 5px;
       background-color:  #E84949;
-    }
+    } */
   
     .hamburger__line:first-child {
       width: 30%;
@@ -665,7 +729,7 @@ h1{
       transform: translateX(0);
     }
   
-    .hamburger__line-1 {
+    /* .hamburger__line-1 {
       transform: rotate(45deg) translateX(2rem) translateY(-0.5rem);
     }
   
@@ -675,28 +739,47 @@ h1{
   
     .hamburger__line-3 {
       transform: rotate(-45deg) translateX(-0.5rem) translateY(-2.6rem);
-    }
+    } */
     .page{
       flex-wrap: wrap-reverse;
       align-items: center;
       padding: 1rem 5rem;
       
     }
+    .page{
+      flex-wrap: wrap-reverse;
+      align-items: center;
+      padding: 1rem 0rem;
+      
+    }
+    .page img{
+      padding-left: 0.1rem;
+    }
     .page .text{
-      padding: 2rem;
+      padding: 1rem 2rem;
     }
     .page .text p{
       width: 100%;
     }
     .personal-info {
-      flex-wrap: wrap-reverse; 
-      padding: 1rem 5rem;
+      flex-wrap: wrap-reverse;
+      gap: 4rem;
+      margin-bottom: 3rem;
+      padding-left: 1rem;
+  
     }
+    .personal-info__img {
+     flex-basis: 10%;
+    }
+    
     .personal-info__content{
       flex-wrap: wrap;
+      margin-left: -4.5rem;
+      flex-basis: 100%;
     }
     .personal-info__content--experience {
       flex-wrap: wrap;
+      margin-left: 0rem;
     }
     .portfolio .cards {
       display: block;
@@ -704,14 +787,77 @@ h1{
     .portfolio .cards .card{
       flex-wrap: wrap;
       margin-bottom: 6rem;
+      margin-left: -2rem;
+      margin-right: -2rem;
     }
     .blogs .all-cards{
       display: block;
       flex-wrap: wrap;
     }
+    .blogs .all-cards .blog-card{
+      margin: 5rem 1rem;
+    }
     .contact .contact-page {
       display: block;
-      padding-left: 5rem ;
+      padding-left: 1rem ;
     }
+    .contact .contact-page .ii {
+      width: 90%;
+      padding-bottom: 2rem;
+    }
+    .contact .contact-page form{
+      padding: 5rem 0 3rem 0rem;
+    }
+    .contact .contact-page form input{
+      margin-bottom: 2rem;
+      padding: 1.2rem 10rem 1.2rem .8rem;
+    }
+    .contact .contact-page form button{
+      margin-left: 7rem;
+    }
+    .last .last-links{
+      display: flex;
+      color: #ffffff;
+      padding: 4rem 1rem;
+      margin-top: -18rem;
+    }
+    .last .imagee img{
+      height: 40vh;
+    }
+    .last .last-links .social-media-links .title-icons{
+      color: #ffffff;
+      font-size: 16px;
+    }
+    .last .last-links .social-media-links .icons ion-icon{
+      color: #ffffff;
+      font-size: 26px;
+      cursor: pointer;
+      padding: 2rem 1rem 1rem 0rem;
+    }
+    .last .last-links .github-link div{
+      color: #ffffff;
+      font-size: 16px;
+    }
+    .last .copyright{
+      color: #ffffff;
+      text-align: center;
+      padding-top: 1.8rem;
+    
+    }
+    .last .last-links .github-link span ion-icon{
+      color: #ffffff;
+      font-size: 30px;
+      padding-right: .4rem;
+      cursor: pointer;
+    }
+    .last .last-links .github-link span{
+      display: flex;   
+      padding-top: 2rem;
+    }
+    .last .last-links .github-link span .nm{
+      font: 10px; 
+      color: #FFFAFA;
+    }
+    
   }
 

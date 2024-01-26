@@ -235,8 +235,8 @@ body {
   background: var(--blue);
   padding: 60px;
   border-radius: 20px;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
   cursor: pointer;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
 }
@@ -247,8 +247,9 @@ body {
   font-size: 40px;
   color: var(--white);
   top: 3rem;
-  left: 5rem;
+  left: 2rem;
   text-align: end;
+  /* right: 1rem; */
 }
 
 .cardBox .card .cardName {

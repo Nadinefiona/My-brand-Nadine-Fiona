@@ -43,7 +43,7 @@
     padding: 5rem 20rem;
 }
 
-  img{
+img{
      width: 100%;
      height: 100%;
      padding-bottom: 1rem;
@@ -180,14 +180,27 @@
  }
 
  input[type=text]{
-    padding: 1rem .1rem;
-    width: 100%;
+    padding: .3rem .1rem;
     margin: 1rem 0;
+    border: none;
+    border-bottom: 1px solid rgb(93, 83, 83);
+    width: 100%;   
+    height: 40px;
+    font-size: 16px;
+    background: none;
+    outline: none;
  }
  input[type=email]{
-    padding: 1rem .1rem;
+    padding: .3rem .1rem;
     width: 100%;
     margin: .5rem 0;
+    border: none;
+    border-bottom: 1px solid rgb(93, 83, 83);
+    width: 100%;   
+    height: 40px;
+    font-size: 16px;
+    background: none;
+    outline: none;
  }
  input[type=submit]{
      width: 20%;

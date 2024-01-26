@@ -83,8 +83,19 @@
     border: 3px white solid;
 }
 
-.Email, .Password {
+.Email {
     left: 173px;
+    position: absolute;
+    color: white;
+    font-size: 26px;
+    font-family: Roboto;
+    font-weight: 700;
+    word-wrap: break-word;
+    top: 470px;
+}
+.Password {
+    left: 173px;
+    top:600px ;
     position: absolute;
     color: white;
     font-size: 26px;
