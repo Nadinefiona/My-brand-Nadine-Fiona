@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>update Article </title>
+    <title>Update Blog </title>
+     
+    <link
+    href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css"
+    rel="stylesheet"
+  />
     <link rel="stylesheet" href="/css/updateArticle.css">
 </head>
-
 <body>
-
     <div class="container">
         <div class="navigation">
             <ul>
@@ -24,7 +27,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/Html/dashboard.html">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -42,16 +45,16 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/Html/messages.html">
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>                        </span>
-                        <span class="title">Users</span>
+                        <span class="title">Messages</span>
                     </a>
                 </li>
 
 
                 <li class="iconi">
-                    <a href="/Html/index.html">
+                    <a href="index.html">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>                        </span>
                         <span class="title">Log Out</span>
@@ -85,21 +88,129 @@
             </div>
 
             <nav class="page">
-                <h3>Update  Article</h3>
-                <form action=""> 
+                
+                <form class="form" id="form">
+
+                    <h3>Update blog</h3>
                     <label for=""  class="sms">Title</label></br>
-                    <input type="text"  ></br>
-                    <label for=""  class="sms">Body</label></br>
-                    <input type="text" class="text1" ></br>
-                    <label for="" class="sms">Image</label></br>
-                    <input type="file" id="my file" name="file name" ></br>
-                    <input type="button" value="Update">
+                    <div class="form-control"> 
+                       <input type="text" id="title"></br>
+                       <i class="fas fa-check-circle"></i>
+                       <i class="fas fa-exclamation-circle"></i>
+                       <small>Error</small></b>
+                   </div>
+                    <label for="" class="sms">blog Image</label></br>
+                    <div class="form-control">
+                        <input type="file" id="image" name="file name" ></br>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error</small></b>
+                    </div>
+                    <label for=""  class="sms">blog Body</label></br>
+                    <div class="form-control">
+                        <input type="text" class="text1" name="textarea" id="body"></br>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error</small></b>
+                    </div>
+
+                    <button type="submit">Update</button>
                 </form>
             </nav>
 
-           
+            
         </div>
     </div>
+    
+    <script src="tinymce\tinymce.min.js"></script>
+    <script src="/javascript/script.js"></script>
+    <script>
+        const form = document.getElementById('form');
+        const title = document.getElementById('title');
+        const image = document.getElementById('image');
+        const body = document.getElementById('body');
+        
+        form.addEventListener('submit', (e) => {
+            if (!checkInputs()) {
+                e.preventDefault();
+            } else {
+                e.preventDefault();
+                let url = 'http://localhost:3000/api/posts';
+                let data = {
+                    "title": title.value,
+                    "image": image.value,
+                    "body": body.value
+                }
+                const options = {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+                fetch(url, options)
+                    .then(res => res.json())
+                    .then(res => console.log(res)).catch(err => console.log(err));
+            }
+            console.log(checkInputs());
+        });
+        
+        function checkInputs() {
+            const titleValue = title.value.trim();
+            const imageValue = image.value.trim();
+            const bodyValue = body.value.trim();
+        
+            let t = false;
+            let b = false;
+            let i = false;
+        
+            if (titleValue === '') {
+                setErrorfor(title, 'Title cannot be blank');
+            } else if (titleValue.length <= 15) {
+                setErrorfor(title, 'Title must be greater than 15 characters');
+            } else {
+                setSuccessfor(title);
+                t = true;
+            }
+        
+            if (imageValue == '') {
+                setErrorfor(image, 'Please choose an image');
+            } else {
+                setSuccessfor(image);
+                i = true;
+            }
+        
+            if (bodyValue == '') {
+                setErrorfor(body, 'Body cannot be blank');
+            } else if (bodyValue.length <= 30) {
+                setErrorfor(body, 'Body must be greater than 30 characters');
+            } else {
+                setSuccessfor(body);
+                b = true;
+            }
+        
+            if (t && b && i) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        
+        function setErrorfor(input, message) {
+            const formControl = input.parentElement;
+            const small = formControl.querySelector('small');
+        
+            small.innerText = message;
+        
+            formControl.className = 'form-control error';
+        }
+        
+        function setSuccessfor(input) {
+            const formControl = input.parentElement;
+            formControl.className = 'form-control success';
+        }
+        
+            </script>
 
     <!-- =========== Scripts =========  -->
     <script src="/javascript/dashboard.js"></script>

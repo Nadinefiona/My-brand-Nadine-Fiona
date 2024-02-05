@@ -183,3 +183,91 @@
     height: 50px;
     background: #FFC42A;
 }
+
+.Login form .text-field{
+    position: relative;
+    padding: 10px 0;
+    color: #BBB;
+    font-size: 14px;
+    font-style: normal;
+    padding-top: 20px;
+}
+form{
+    text-align: center;
+}
+label{
+    position: absolute;
+    top: 50%;
+    transform: translateY(10%);
+    left: 15%;
+    font-size: 14px;
+    pointer-events: none;
+    transition: .5s;
+}
+.text-field input{
+    border: none;
+    border-bottom: 1px solid black;
+    width: 70%;   
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    background: none;
+    outline: none;
+}
+.text-field span::before{
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    transition: .5s;
+}
+.text-field input:focus ~ label,
+.text-field input:valid ~ label{
+  top: 10px;
+  font-size: 11px;
+}
+.text-field input:focus ~ span::before,
+.text-field input:valid ~ span::before{
+  width: 100%;
+}
+form .pass{
+    padding-left: 160px;
+    color: #0D46D9;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+}
+input [type="submit"]{
+    background-color: #FFFC00;
+    color: black;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    padding: 14px 90px;
+    border: none;
+    border-radius: 30px;
+    margin: 40px 0;
+    cursor: pointer;
+    outline: none;
+}
+input[type="submit"]:hover{
+  background-color: #BBB;
+  color: white;
+  transition: .5s;
+}
+
+form .signup-link {
+    color: #626262;
+    font-family: HelveticaNeue;
+    font-size: 12px;
+    font-style: normal;
+    line-height: normal;
+}
+form a{
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}

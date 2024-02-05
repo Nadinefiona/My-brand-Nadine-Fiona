@@ -195,7 +195,7 @@ body {
 .search label ion-icon {
   position: absolute;
   top: 0;
-  left: 10px;
+  left: 30px;
   font-size: 1.2rem;
 }
 .profile{
@@ -395,70 +395,105 @@ body {
 /******************* Form ***************************/
 
 
-.page form{
-    margin-left: 10rem;
+.page{
+  width: 70%;
+ 
+  margin-top: 40px;
+  margin-left: 120px;
+  margin-bottom: 30px;
 }
-.page form label{
-    font-size: 20px;
+.page .form ::placeholder{
+  padding-left: 10px;
+  font-size: 20px;
+  font-weight: lighter;
+  margin-bottom: 4rem;
 }
-.page::placeholder{
-    padding-left: 10px;
-    font-size: small;
-    font-weight: lighter;
+input[type=text],input[type=file]{
+  font-size: 18px;
+  width:100%;
+  margin: 10px 0;
+  box-sizing:border-box;
+  height:50px;
+  margin-left: 20px;
+  padding-right: 30px;
+  border: 1px  solid #343D68;
+  border-radius: 5px;
+  font-style: normal;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  padding: 10px;
 }
-.page input[type=text],input[type=file]{
-    width:70%;
-    margin: 20px 0;
-    box-sizing:border-box;
-    height:40px;
-    margin-left: 80px;
-    padding-right: 30px;
-    border: 1px  solid rgba(52, 61, 104, 0.532);
-    border-radius: 5px;
-    font-style: normal;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 400;
-    padding: 7px;
- }
-.page .sms{
+.sms{
+  margin-left: 20px;
+  font-size: 20px;
+  margin-top: 20rem;
+}
+input[type=text].text1{
+  height: 10rem;
+}
 
-    margin-left: 80px;
-
- }
-.page input[type=text].text1{
-
-    height: 10rem;
+button{
+  background-color:#343D68;
+  color: #e5e5e5;
+  width: 100%;
+  height: 60px;
+  padding: 20px;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+  margin-left: 20px;
+  font-size: 22px;
+  margin-top: 30px;
+  border-radius: 40px;
+  font-style: normal;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 80px;
+  cursor: pointer;
 }
-
-.page input[type=button]{
-    background-color:#343D68;
-    color: #e5e5e5;
-    border-radius: 40px;
-    width: 70%;
-    padding: 20px;
-    border: none;
-    text-align: center;
-    font-weight: bold;
-    margin-left: 80px;
-    font-size: 24px;
-    margin-top: 30px;
-    font-style: normal;
-    font-family: Arial, Helvetica, sans-serif;
-    margin-bottom: 80px;
-    cursor: pointer;
-}
-.page input[type=button]:hover{
-    background-color: rgb(137, 137, 181);
+button:hover{
+  background-color: rgb(16, 16, 91);
 }
 
 .page h3 {
-     color: #343D68;
-    text-align: center;
-    padding-top: 70px;
-    font-style: normal;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 600;
-    font-size: 1.7rem;
-    padding-bottom: 40px;
+  color: #343D68;
+  text-align: center;
+  padding: 30px;
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
 }
 
+.form-control input{
+  display: block;
+  margin-bottom: -1rem;
+}
+.form-control.success input{
+  border:2px solid rgb(4, 252, 4);
+}
+.form-control.error input{
+ border: 2px  solid red;
+}
+.form-control i{
+  position: absolute;
+  margin-top: -35px;
+  margin-left: 59rem;
+  visibility: hidden;
+}
+.form-control small{
+  margin-left: 1.2rem;
+  top: 0;
+  color: red;
+  visibility: hidden;
+}
+.form-control.success i.fa-check-circle{
+ visibility: visible;
+ color: rgb(4, 252, 4);
+ 
+}
+.form-control.error i.fa-exclamation-circle{
+  visibility: visible;
+  color: red;
+}
+.form-control.error small{
+  visibility: visible;
+}

@@ -252,11 +252,17 @@
       <h1>Contact me</h1>
       <div class="contact-page">
           <img class="ii" src="/images/contact.png" alt="">
-          <form action="">
+          <!-- <form action="">
                   <input type="email" name="" id="" placeholder="Enter email address"></br>
                   <input type="text" name="" id="" placeholder="Enter message..."></br>
                   <button>Send Message <img src="/images/submit-icon.png" alt=""></button>
-          </form>
+          </form> -->
+          <form id="myForm" onsubmit="return validateForm()">
+            <input type="email" name="email" id="email" placeholder="Enter email address"></br><span class="error-message" id="emailError"></span></br>
+            <input type="text" name="message" id="message" placeholder="Enter message..."></br><span class="error-message" id="messageError"></span></br>
+            <button type="submit">Send Message <img src="/images/submit-icon.png" alt=""></button>
+        </form>
+    
       </div>
   </div>
 
@@ -286,6 +292,8 @@
         © copyright nadinefiona 2024
     </div>
 </div>
+
+   <script src="/javascript/contact.js"></script>
 
    <script>
     let likebtn = document.querySelector('#likebtn');

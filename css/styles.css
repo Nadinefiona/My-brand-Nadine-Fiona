@@ -336,7 +336,8 @@ h1{
   padding: 3rem 0 3rem 10rem;
 }
 .contact .contact-page form input{
-  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-bottom:.5rem ;
   padding: 1.2rem 25rem 1.2rem .8rem;
   color: #838383;
   font-size: 18px;
@@ -861,3 +862,6 @@ h1{
     
   }
 
+  .error-message {
+    color: red;
+}

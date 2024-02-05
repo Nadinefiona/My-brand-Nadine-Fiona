@@ -70,7 +70,7 @@
                <div>
                 <div>
                     <ion-icon name="heart-outline"></ion-icon>
-                    <span>10 Likes</span>
+                    <span >10 Likes</span>
                 </div>
                 <div class="ii">
                  <h4> Comments</h4>
@@ -94,10 +94,18 @@
              </div>
              <div class="commanteri">
                 <div>
-                    <input type="text" placeholder="Enter Full names"><br/>
-                    <input type="email" placeholder="Enter email"><br/>
-                    <input type="text" placeholder="Add your comment............."><br/>
-                    <input type="submit" value="Send">
+                    <form id="myForm" onsubmit="return validateForm()">
+                        <input type="text" id="fullName" placeholder="Enter Full names"><br/>
+                        <span id="nameError" class="error" style="color: red;"></span><br/>
+                
+                        <input type="email" id="email" placeholder="Enter email"><br/>
+                        <span id="emailError" class="error" style="color: red;"></span><br/>
+                
+                        <input type="text" id="comment" placeholder="Add your comment............."><br/>
+                        <span id="commentError" class="error" style="color: red;" ></span><br/>
+                
+                        <input type="submit" value="Send">
+                    </form>
 
                 </div>
              </div>
@@ -105,6 +113,7 @@
             </div>  
         </div>
      </div>
+     <script src="/javascript/comment.js"></script>
      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

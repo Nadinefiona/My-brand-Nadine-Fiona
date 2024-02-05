@@ -212,6 +212,7 @@ img{
      padding: .8rem 1rem;
      font-weight: bold;
      margin: 1rem 0;
+     cursor: pointer;
  }
  ::placeholder{
     font-size: 1rem;
