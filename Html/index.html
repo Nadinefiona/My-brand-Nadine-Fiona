@@ -123,7 +123,7 @@
   </div>
   <div class="blogs">
       <h1>Blogs</h1>
-      <div class="all-cards">
+      <div class="all-cards" id="blogContainer" >
           <div class="blog-card">
               <img src="/images/blog-1.png" alt="">
               <span><p>July 30, 2024 </p> | Google </span>
@@ -298,20 +298,20 @@
    <script>
     let likebtn = document.querySelector('#likebtn');
     let dislikebtn = document.querySelector('#dislikebtn');
-
+    
     let input1 = document.querySelector('#input1');
     let input2 = document.querySelector('#input2');
-
-    letbtn.addEventListener('click', ()=>{
+    
+    likebtn.addEventListener('click', () => {
       input1.value = parseInt(input1.value) + 1;
       input1.style.color = '#12ff00';
-    })
-
-    letbtn.addEventListener('click', ()=>{
+    });
+    
+    dislikebtn.addEventListener('click', () => {
       input2.value = parseInt(input2.value) + 1;
       input2.style.color = '#ff0000';
-    })
-
+    });
+    
    </script>
 
     <script>
@@ -330,6 +330,30 @@
        });
 
     </script>
+    <script>
+      var storedBlogs = localStorage.getItem('blogs');
+      var blogs = storedBlogs ? JSON.parse(storedBlogs) : [];
+  
+      var blogContainer = document.getElementById('blogContainer');
+  
+      blogs.forEach(function (blog) {
+          var blogCard = document.createElement('div');
+          blogCard.classList.add('blog-card');
+          blogCard.innerHTML = `
+              <img src="${blog.image}" alt="">
+              <span><p>${new Date().toLocaleDateString()} </p> | Author </span>
+              <div class="details">
+                  ${blog.body}
+              </div>
+              <button onclick="readMore('${blog.id}')">Read More</button>
+          `;
+          blogContainer.appendChild(blogCard);
+      });
+  
+      function readMore(blogId) {
+          // window.location.href = '/Html/singleblog.html?id=' + blogId;
+      }
+  </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

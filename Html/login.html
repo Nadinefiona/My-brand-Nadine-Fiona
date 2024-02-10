@@ -3,58 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/login.css">
+
 </head>
 <body>
-    <nav class="nav-bar">
-        <h1><img src="/images/logo.png" alt=""></h1>
-        <nav class="nav-links">
-        <ul class="hideOnemobile"><a href="#">Home</a></ul>
-        <ul class="hideOnemobile"><a href="#">About</a></ul>
-        <ul class="hideOnemobile"><a href="#">Portfolio</a></ul>
-        <ul class="hideOnemobile"><a href="#">Blogs</a></ul>
-        <ul class="hideOnemobile"><a href="#">Contact</a></ul>
-        <ul class="hideOnemobile"><a href="#">Login</a></ul>
+    <header class="header overall-layout">
+        <a class="header__logo" href="#"><img src="/images/logo.png" alt=""></a>
+  
+        <nav class="header__nav">
+          <a class="header__nav--link" href="#">Home</a>
+          <a class="header__nav--link" href="#">About</a>
+          <a class="header__nav--link" href="#">Portfolio</a>
+          <a class="header__nav--link" href="#">Blogs</a>
+          <a class="header__nav--link" href="#">Contact</a>
+          <a class="header__nav--link" href="/Html/login.html"> Login</a>
         </nav>
-    </nav>
-    <!-- <form action="" method="post">
-        <div class="Welcome">WELCOME</div>
-        <div class="text-field">
-            <input type="text" required>
-            <span></span>
-            <label>EMAIL</label>
+  
+        <div class="hamburger">
+          <div>
+          <div class="hamburger__line"></div>
+          <div class="hamburger__line"></div>
+          <div class="hamburger__line"></div>
         </div>
-        <div class="text-field">
-            <input type="password" required>
-            <span></span>
-            <label>PASSWORD</label>
         </div>
-        <div class="pass">Forget password?</div>
-        <input type="submit" value="Login">
-    </form> -->
-    <div class="Login">
-        <div class="Rectangle1"></div>
-        <img class="ChandelierWithGreenRoundLampshade" src="/images/login222.png" />
-        <form action="" method="post">
+    </header>
+   
+    <div class="container-1">
+        <div class="paragraph">
+            <img src="/images/login11.png" alt="" width="40%" height="40%">
+            <h1>WELCOME</h1>
+        </div>
+        <form action="/Html/dashboard.html" method="post" onsubmit="return validateForm()">
+
             <div class="text-field">
-                <input type="text" required>
+                <input type="email" required>
                 <span></span>
-                <label>EMAIL</label>
+                <label>EMAIL</label>      
             </div>
             <div class="text-field">
                 <input type="password" required>
                 <span></span>
-                <label>PASSWORD</label>
+                <label>PASSWORD</label><br/>
+                
             </div>
             <div class="pass">Forget password?</div>
-            <input type="submit" value="Login">
+                <input type="submit" value="LOGIN">
+            </div>
         </form>
-        <img class="AvatarWithManInGreenShirtAndOrangeHat" src="/images/login11.png" />
-        <div class="UiRuman">@ui.ruman</div>
-        <div class="BrandsInstagram">
-            <div class="Vector"></div>
-        </div>
     </div>
+    <script>
+        function validateForm() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            // Email validation regex
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Password validation regex
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            // Clear previous error messages
+            document.getElementById('emailError').innerText = '';
+            document.getElementById('passwordError').innerText = '';
+
+            // Validate email
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').innerText = 'Invalid email address';
+                return false;
+            }
+
+            // Validate password
+            if (!passwordRegex.test(password)) {
+                document.getElementById('passwordError').innerText = 'Password must be at least 8 characters long and include lowercase, uppercase, number, and special character.';
+                return false;
+            }
+
+            // If validation is successful, form will be submitted
+            return true;
+        }
+    </script>
 </body>
 </html>

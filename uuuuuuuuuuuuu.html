@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-field {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            pointer-events: none;
+            transition: 0.2s ease all;
+        }
+
+        span {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            height: 2px;
+            width: 0;
+            background: #3498db;
+            transition: 0.2s ease all;
+        }
+
+        input:focus + label,
+        input:valid + label {
+            top: -12px;
+            font-size: 12px;
+            color: #3498db;
+        }
+
+        input:focus + label + span,
+        input:valid + label + span {
+            width: 100%;
+        }
+
+        .pass {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 5px;
+            display: none; /* Initially hide error messages */
+        }
+    </style>
+</head>
+<body>
+    <form id="loginForm" action="/Html/dashboard.html" method="post" onsubmit="return validateForm()">
+        <div class="text-field">
+            <input type="text" id="email" >
+            <span></span>
+            <label>Email</label>
+            <div class="error-message" id="emailError"></div>
+        </div>
+        <div class="text-field">
+            <input type="password" id="password" >
+            <span></span>
+            <label>Password</label>
+            <div class="error-message" id="passwordError"></div>
+        </div>
+        <div class="pass">Forget password?</div>
+        <input type="submit" value="LOGIN">
+    </form>
+
+    <script>
+        function validateForm() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            // Reset error messages
+            document.getElementById('emailError').style.display = 'none';
+            document.getElementById('passwordError').style.display = 'none';
+
+            // Check for empty inputs
+            if (email.trim() === '') {
+                document.getElementById('emailError').innerText = 'Email is required';
+                document.getElementById('emailError').style.display = 'block';
+                return false;
+            }
+
+            if (password.trim() === '') {
+                document.getElementById('passwordError').innerText = 'Password is required';
+                document.getElementById('passwordError').style.display = 'block';
+                return false;
+            }
+
+            // Check for invalid inputs
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').innerText = 'Invalid email address';
+                document.getElementById('emailError').style.display = 'block';
+                return false;
+            }
+
+            if (!passwordRegex.test(password)) {
+                document.getElementById('passwordError').innerText = 'Password must be at least 8 characters long and include lowercase, uppercase, number, and special character.';
+                document.getElementById('passwordError').style.display = 'block';
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

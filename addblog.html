@@ -221,6 +221,40 @@
         errorElement.style.display = 'none';
     }
 </script>
+<script>
+    document.getElementById('form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var title = document.getElementById('title').value;
+        var image = document.getElementById('image').value;
+        var body = document.getElementById('default').value;
+
+        var timestamp = Date.now();
+        var blogId = 'blog_' + timestamp;
+
+        var blog = {
+            id: blogId,
+            title: title,
+            image: image,
+            body: body,
+        };
+
+        var existingBlogs = localStorage.getItem('blogs');
+        var blogs = existingBlogs ? JSON.parse(existingBlogs) : [];
+
+        blogs.push(blog);
+
+        localStorage.setItem('blogs', JSON.stringify(blogs));
+
+        document.getElementById('form').reset();
+
+        alert('Blog added successfully!');
+
+        // window.location.href = '/Html/dashboard.html';
+    });
+</script>
+
+
 
 <script src="tinymce\tinymce.min.js"></script>
 <script src="/script.js"></script>
@@ -233,3 +267,7 @@
 
 </body>
 </html>
+
+
+
+lo

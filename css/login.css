@@ -1,193 +1,28 @@
-*{
-    top: 0;
-    right: 0;
-    left: 0;
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    color: #343D68;
-    text-decoration: none;
- }
- body{
-     background-color: #f0fcfc;
- }
-.nav-bar{
-    display: flex;
-    color: #343D68;
-    font-size: 25px;
-    font-weight: bold;
+
+.container-1{
+    width: 40%;
     box-sizing: border-box;
-    padding: 1.2rem 0 1.2rem 1rem;
-    box-shadow:1px .5px 2px black;
-    background-color: #ffffff;
-    cursor: pointer;
-}
-.nav-bar ion-icon{
-    font-size: 30px;
-    color: #000000;
-    padding-top: .25rem;
-}
-.nav-bar h1{
-    padding-left: .5rem;
-}
-.nav-links{
-    display: flex;
-    padding-left: 35rem; 
-    padding-top: 1rem;
-    padding-bottom: 1rem; 
-}
-.nav-links ul{
-    padding-top: .5rem;
-    padding-right: 1.2rem;
-}
-.Login {
-    width: 1440px;
-    height: 890px;
-    position: relative;
-    background: #343D68;
+    background-color: #343D68;
+    margin: 1.6rem 33rem;
     border-radius: 50px;
-    overflow: hidden;
-    margin: 10rem;
 }
+.container-1 .paragraph{
+    padding-top: 8rem;
+    text-align: center;
+}
+.container-1 .paragraph h1{
+    padding: 15px 0 ;
+    color: white; 
+    font-size: 65px; 
+    font-family: Risque; 
+    font-weight: 400; 
+    word-wrap: break-word"
 
-.Rectangle1 {
-    width: 694.59px;
-    height: 1024px;
-    left: 905.41px;
-    top: 0px;
-    position: absolute;
-    background: white;
 }
-
-.ChandelierWithGreenRoundLampshade {
-    width: 174px;
-    height: 276px;
-    left: 948px;
-    top: -37px;
-    position: absolute;
-}
-
-.Line1, .Line2 {
-    width: 483px;
-    height: 0px;
-    left: 173px;
-    position: absolute;
-}
-
-.Line1 {
-    top: 524px;
-    border: 3px #0404d0 solid;
-}
-
-.Line2 {
-    top: 643px;
-    border: 3px white solid;
-}
-
-.Email {
-    left: 173px;
-    position: absolute;
-    color: white;
-    font-size: 26px;
-    font-family: Roboto;
-    font-weight: 700;
-    word-wrap: break-word;
-    top: 470px;
-}
-.Password {
-    left: 173px;
-    top:600px ;
-    position: absolute;
-    color: white;
-    font-size: 26px;
-    font-family: Roboto;
-    font-weight: 700;
-    word-wrap: break-word;
-}
-
-.Welcome {
-    left: 250px;
-    top: 325px;
-    position: absolute;
-    color: white;
-    font-size: 72px;
-    font-family: Risque;
-    font-weight: 400;
-    word-wrap: break-word;
-}
-
-.ForgotPassword {
-    left: 463px;
-    top: 651px;
-    position: absolute;
-    color: white;
-    font-size: 24px;
-    font-family: Roboto;
-    font-weight: 700;
-    word-wrap: break-word;
-}
-
-.Rectangle2 {
-    width: 483px;
-    height: 76px;
-    left: 173px;
-    top: 693px;
-    position: absolute;
-    background: white;
-    border-radius: 10px;
-}
-
-.LoginButton {
-    left: 377px;
-    top: 716px;
-    position: absolute;
-    color: #00523F;
-    font-size: 26px;
-    font-family: Roboto;
-    font-weight: 700;
-    word-wrap: break-word;
-}
-
-.AvatarWithManInGreenShirtAndOrangeHat {
-    width: 350px;
-    height: 128px;
-    left: 233px;
-    top: 146px;
-    position: absolute;
-}
-
-.UiRuman {
-    left: 319px;
-    top: 948px;
-    position: absolute;
-    color: white;
-    font-size: 48px;
-    font-family: Risque;
-    font-weight: 400;
-    word-wrap: break-word;
-}
-
-.BrandsInstagram {
-    width: 60px;
-    height: 60px;
-    padding: 5px;
-    left: 256px;
-    top: 949px;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    display: inline-flex;
-}
-
-.Vector {
-    width: 50px;
-    height: 50px;
-    background: #FFC42A;
-}
-
-.Login form .text-field{
+form .text-field{
     position: relative;
-    padding: 10px 0;
-    color: #BBB;
+    /* padding: 10px 0; */
+    color: white;
     font-size: 14px;
     font-style: normal;
     padding-top: 20px;
@@ -200,19 +35,22 @@ label{
     top: 50%;
     transform: translateY(10%);
     left: 15%;
-    font-size: 14px;
+    font-size: 18px;
     pointer-events: none;
     transition: .5s;
+    color: white;
+    padding-right: 25rem;
 }
 .text-field input{
     border: none;
-    border-bottom: 1px solid black;
-    width: 70%;   
+    border-bottom: 1px solid white;
+    width: 60%;   
     padding: 0 5px;
     height: 40px;
     font-size: 16px;
     background: none;
     outline: none;
+    color: white;
 }
 .text-field span::before{
     position: absolute;
@@ -225,37 +63,40 @@ label{
 .text-field input:focus ~ label,
 .text-field input:valid ~ label{
   top: 10px;
-  font-size: 11px;
+  font-size: 13px;
 }
 .text-field input:focus ~ span::before,
 .text-field input:valid ~ span::before{
   width: 100%;
 }
 form .pass{
-    padding-left: 160px;
-    color: #0D46D9;
-    font-size: 12px;
+    padding-left: 18rem;
+    color: white;
+    font-size: 15px;
     font-style: normal;
     font-weight: bold;
     line-height: normal;
+    padding-top: .8rem;
 }
-input [type="submit"]{
-    background-color: #FFFC00;
-    color: black;
-    font-size: 18px;
+input[type="submit"]{
+    background-color: white;
+    color: #00523F;
+    font-size: 25px;
     font-style: normal;
     font-weight: bold;
     line-height: normal;
-    padding: 14px 90px;
+    padding: 14px 180px;
     border: none;
-    border-radius: 30px;
+    border-radius: 20px;
     margin: 40px 0;
     cursor: pointer;
     outline: none;
+    margin-bottom: 5rem;
+
 }
 input[type="submit"]:hover{
-  background-color: #BBB;
-  color: white;
+  background-color: #FFFC00;
+  color: black;
   transition: .5s;
 }
 
@@ -271,3 +112,23 @@ form a{
     text-decoration: none;
     color: #000;
 }
+.error-message {
+    color: red;
+    margin-top: 5px;
+}
+
+@media screen and (max-width: 500px) {
+
+    input[type="submit"] {
+        padding: 14px 3rem;
+    }
+
+}
+@media screen and (max-width: 500px) {
+
+    input[type="submit"] {
+        padding: 14px 3rem;
+    }
+  
+  }
+  
