@@ -5,12 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add new Article </title>
+    <title>All Blogs</title>
     <link rel="stylesheet" href="/css/AllBlogs.css">
+    <style>
+        .one-blog {
+            margin-bottom: 20px;
+        }
+
+        .one-blog img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 
 <body>
-
     <div class="container">
         <div class="navigation">
             <ul>
@@ -24,7 +33,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/Html/dashboard.html">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -51,7 +60,7 @@
 
 
                 <li class="iconi">
-                    <a href="/Html/index.html">
+                    <a href="index.html">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>                        </span>
                         <span class="title">Log Out</span>
@@ -86,126 +95,107 @@
 
             <nav class="page">
                 <div class="heading">
-                    <h3>All Articles</h3>
-                <a href="/addblog.html"><button>Add New</button></a>
+                    <h3>All Blogs</h3>
                 </div>
                 <div class="all-blogs">
-                    <div class="one-blog">
-                        <img src="/images/blog-6.png" alt="">
-                        <p>
-                            he main body of a book or other piece of 
-                            writing, as distinct from other material 
-                            such as notes, appendices, and illustrations.
-                            ]book or other written or printed work, 
-                            regarded in terms of its content rather 
-                            than its physical
-                            he main body of a book or other piece of 
-                            writing, as distinct from other material 
-                            such as notes, appendices, and illustrations.
-                            ]book or other written or printed work, 
-                            regarded in terms of its content rather 
-                            than its physical.
-                        </p>
-                        <div class="buttons">
-                            <a href="/updateblog.html"><button>Update</button></a>
-                            <a href="#"><button>Delete</button></a>
-                        </div>
-                    </div>
-                    <div class="one-blog">
-                        <img src="/images/blog-6.png" alt="">
-                        <p>
-                            he main body of a book or other piece of 
-                            writing, as distinct from other material 
-                            such as notes, appendices, and illustrations.
-                            ]book or other written or printed work, 
-                            regarded in terms of its content rather 
-                            than its physical
-                            he main body of a book or other piece of 
-                            writing, as distinct from other material 
-                            such as notes, appendices, and illustrations.
-                            ]book or other written or printed work, 
-                            regarded in terms of its content rather 
-                            than its physical.
-                        </p>
-                        <div class="buttons">
-                            <a href="/updateblog.html"><button>Update</button></a>
-                            <a href="#"><button>Delete</button></a>
-                        </div>
-                    </div>
-                    <div class="one-blog">
-                        <img src="/images/blog-6.png" alt="">
-                        <p>
-                            he main body of a book or other piece of 
-                            writing, as distinct from other material 
-                            such as notes, appendices, and illustrations.
-                            ]book or other written or printed work, 
-                            regarded in terms of its content rather 
-                            than its physical
-                            he main body of a book or other piece of 
-                            writing, as distinct from other material 
-                            such as notes, appendices, and illustrations.
-                            ]book or other written or printed work, 
-                            regarded in terms of its content rather 
-                            than its physical.
-                        </p>
-                        <div class="buttons">
-                            <a href="/updateblog.html"><button>Update</button></a>
-                            <a href="#"><button>Delete</button></a>
-                        </div>
-                    </div>
-                    <div class="one-blog">
-                        <img src="/images/blog-6.png" alt="">
-                        <p>
-                            he main body of a book or other piece of 
-                            writing, as distinct from other material 
-                            such as notes, appendices, and illustrations.
-                            ]book or other written or printed work, 
-                            regarded in terms of its content rather 
-                            than its physical
-                            he main body of a book or other piece of 
-                            writing, as distinct from other material 
-                            such as notes, appendices, and illustrations.
-                            ]book or other written or printed work, 
-                            regarded in terms of its content rather 
-                            than its physical.
-                        </p>
-                        <div class="buttons">
-                            <a href="/updateblog.html"><button>Update</button></a>
-                            <a href="#"><button>Delete</button></a>
-                        </div>
-                    </div>
-                    <div class="one-blog">
-                        <img src="/images/blog-6.png" alt="">
-                        <p>
-                            he main body of a book or other piece of 
-                            writing, as distinct from other material 
-                            such as notes, appendices, and illustrations.
-                            ]book or other written or printed work, 
-                            regarded in terms of its content rather 
-                            than its physical
-                            he main body of a book or other piece of 
-                            writing, as distinct from other material 
-                            such as notes, appendices, and illustrations.
-                            ]book or other written or printed work, 
-                            regarded in terms of its content rather 
-                            than its physical.
-                        </p>
-                              <div class="buttons">
-                              <a href="/updateblog.html"><button>Update</button></a>
-                            <a href="#"><button>Delete</button></a>
-                        </div>
-                    </div>
+                    <!-- JavaScript will populate blogs here -->
                 </div>
             </nav>
-
-           
         </div>
     </div>
 
-    <script src="/javascript/dashboard.js"></script>
+    <script>
+        // Function to populate blogs from local storage
+        function populateBlogs() {
+            var allBlogsContainer = document.querySelector('.all-blogs');
+            allBlogsContainer.innerHTML = ''; // Clear existing content
 
+            var blogs = localStorage.getItem('blogs');
+            if (blogs) {
+                blogs = JSON.parse(blogs);
+                blogs.forEach(function (blog) {
+                    var blogElement = document.createElement('div');
+                    blogElement.classList.add('one-blog');
+
+                    var image = document.createElement('img');
+                    image.src = blog.image;
+                    blogElement.appendChild(image);
+
+                    var title = document.createElement('h4');
+                    title.textContent = blog.title;
+                    blogElement.appendChild(title);
+
+                    var body = document.createElement('p');
+                    body.textContent = blog.body;
+                    blogElement.appendChild(body);
+
+                    var viewButton = document.createElement('button');
+                    viewButton.textContent = 'View';
+                    viewButton.addEventListener('click', function () {
+                        viewBlog(blog);
+                    });
+                    blogElement.appendChild(viewButton);
+
+                    var updateButton = document.createElement('button');
+                    updateButton.textContent = 'Update';
+                    updateButton.addEventListener('click', function () {
+                        updateBlog(blog);
+                    });
+                    blogElement.appendChild(updateButton);
+
+                    var deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.addEventListener('click', function () {
+                        deleteBlog(blog);
+                    });
+                    blogElement.appendChild(deleteButton);
+
+                    allBlogsContainer.appendChild(blogElement);
+                });
+            }
+        }
+
+        // Function to view a blog
+        function viewBlog(blog) {
+            alert('Viewing blog with title: ' + blog.title);
+            // Implement view functionality here, e.g., navigate to a new page to display the blog in detail
+            // Example: You can redirect to a new page passing blog data in query params
+            window.location.href = 'viewBlog.html?blogId=' + blog.id;
+        }
+
+        // Function to update a blog
+
+        function updateBlog(blog) {
+            // Pass the blog information via URL parameters to the updateBlog.html page
+            window.location.href = '/updateblog.html?blogId=' + blog.id +
+                '&title=' + encodeURIComponent(blog.title) +
+                '&image=' + encodeURIComponent(blog.image) +
+                '&body=' + encodeURIComponent(blog.body);
+        }
+
+        // Function to delete a blog
+        function deleteBlog(blog) {
+            var confirmDelete = confirm('Are you sure you want to delete the blog with title: ' + blog.title);
+            if (confirmDelete) {
+                // Implement delete functionality here, i.e., remove the blog from local storage and refresh the page
+                var blogs = JSON.parse(localStorage.getItem('blogs'));
+                var updatedBlogs = blogs.filter(function (b) {
+                    return b.id !== blog.id;
+                });
+                localStorage.setItem('blogs', JSON.stringify(updatedBlogs));
+                populateBlogs(); // Refresh the list of blogs
+            }
+        }
+
+        // Populate blogs when the page loads
+        window.onload = function () {
+            populateBlogs();
+        };
+    </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script defer src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT_ID.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

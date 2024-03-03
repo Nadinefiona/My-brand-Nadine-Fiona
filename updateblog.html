@@ -153,73 +153,49 @@
 </div>
 </div>
 <script>
-    function validateForm() {
-        var title = document.getElementById('title').value;
-        var image = document.getElementById('image').value;
-        var body = document.getElementById('default').value;
+    window.onload = function () {
+        // Retrieve blog information from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const title = urlParams.get('title');
+        const image = urlParams.get('image');
+        const body = urlParams.get('body');
 
-        var isValid = true;
+        // Pre-fill the form with the retrieved information
+        document.getElementById('title').value = title;
+        document.getElementById('image').value = image;
+        document.getElementById('default').value = body; // Fixed line
+    };
 
-        if (title.trim().length <= 15) {
-            showError('title', 'Please enter a title with more than 15 characters.', 'titleError');
-            isValid = false;
-        } else {
-            showSuccess('title', 'titleError');
-        }
+    document.getElementById('form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent default form submission
 
-        if (image.trim() === '') {
-            showError('image', 'Please select an image.', 'imageError');
-            isValid = false;
-        } else {
-            showSuccess('image', 'imageError');
-        }
+        // Retrieve updated blog information from form fields
+        const updatedTitle = document.getElementById('title').value;
+        const updatedImage = document.getElementById('image').value;
+        const updatedBody = document.getElementById('default').value;
 
-        if (body.trim().length <= 50) {
-            showError('default', 'Please enter the blog body with more than 50 characters.', 'bodyError');
-            isValid = false;
-        } else {
-            showSuccess('default', 'bodyError');
-        }
+        // Update the blog entry in local storage
+        var blogs = JSON.parse(localStorage.getItem('blogs'));
+        var blogId = parseInt(new URLSearchParams(window.location.search).get('blogId'));
+        var updatedBlogs = blogs.map(function (blog) {
+            if (blog.id === blogId) {
+                return {
+                    id: blog.id,
+                    title: updatedTitle,
+                    image: updatedImage,
+                    body: updatedBody
+                };
+            } else {
+                return blog;
+            }
+        });
 
-        return isValid;
-    }
+        localStorage.setItem('blogs', JSON.stringify(updatedBlogs));
 
-    function showError(inputId, message, errorElementId) {
-        var inputElement = document.getElementById(inputId);
-        var parentElement = inputElement.parentElement;
-        var errorMessage = parentElement.querySelector('.error-message');
-        var successIcon = parentElement.querySelector('.fa-check-circle');
-        var errorIcon = parentElement.querySelector('.fa-exclamation-circle');
+        // Redirect back to AllBlogs.html
 
-        errorMessage.textContent = message;
-        errorMessage.style.display = 'block';
-        successIcon.style.display = 'none';
-        errorIcon.style.display = 'block';
-
-        inputElement.classList.add('invalid');
-        inputElement.classList.remove('valid');
-
-        var errorElement = document.getElementById(errorElementId);
-        errorElement.style.display = 'block';
-    }
-
-    function showSuccess(inputId, errorElementId) {
-        var inputElement = document.getElementById(inputId);
-        var parentElement = inputElement.parentElement;
-        var errorMessage = parentElement.querySelector('.error-message');
-        var successIcon = parentElement.querySelector('.fa-check-circle');
-        var errorIcon = parentElement.querySelector('.fa-exclamation-circle');
-
-        errorMessage.style.display = 'none';
-        successIcon.style.display = 'block';
-        errorIcon.style.display = 'none';
-
-        inputElement.classList.remove('invalid');
-        inputElement.classList.add('valid');
-
-        var errorElement = document.getElementById(errorElementId);
-        errorElement.style.display = 'none';
-    }
+        window.location.href = '/Html/AllBlogs.html';
+    });
 </script>
 
 <script src="tinymce\tinymce.min.js"></script>

@@ -7,8 +7,6 @@
     <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet"/>
     <title>Blog Form</title>
     <link rel="stylesheet" href="/addblog.css">
-    
-    
     <style>
         .fas {
             position: absolute;
@@ -220,8 +218,7 @@
         var errorElement = document.getElementById(errorElementId);
         errorElement.style.display = 'none';
     }
-</script>
-<script>
+
     document.getElementById('form').addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -235,7 +232,7 @@
         var blog = {
             id: blogId,
             title: title,
-            image: image,
+            image: image, // Store image URL
             body: body,
         };
 
@@ -246,16 +243,13 @@
 
         localStorage.setItem('blogs', JSON.stringify(blogs));
 
-        document.getElementById('form').reset();
-
-        alert('Blog added successfully!');
-
-        // window.location.href = '/Html/dashboard.html';
+        // Display success message only if the form is valid
+        if (validateForm()) {
+            document.getElementById('form').reset();
+            alert('Blog added successfully!');
+        }
     });
 </script>
-
-
-
 <script src="tinymce\tinymce.min.js"></script>
 <script src="/script.js"></script>
 
@@ -267,7 +261,3 @@
 
 </body>
 </html>
-
-
-
-lo

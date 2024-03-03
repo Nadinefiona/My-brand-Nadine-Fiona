@@ -414,14 +414,18 @@ body {
 .page .all-blogs .one-blog{
     display: flex;
 }
-.page .all-blogs .one-blog p{
+.page .all-blogs .one-blog div h4{
+  font-size: 23px;
+  padding-bottom: 1rem;
+}
+.page .all-blogs .one-blog div{
     padding: 2px 2rem;
     font-size: 18px;
     color: #343D68;
 }
 .page .all-blogs .one-blog img{
-    width: 10%;
-    height: 10%;
+    width: 15%;
+    height: 15%;
 }
 .page .all-blogs .one-blog .buttons button{
     color: #ffffff;

@@ -91,7 +91,7 @@
                 
                 <form class="form" id="form">
 
-                    <h3>Update blog</h3>
+                    <h3>view blog</h3>
                     <label for=""  class="sms">Title</label></br>
                     <div class="form-control"> 
                        <input type="text" id="title"></br>
@@ -114,7 +114,6 @@
                         <small>Error</small></b>
                     </div>
 
-                    <button type="submit">Update</button>
                 </form>
             </nav>
 
@@ -124,98 +123,11 @@
     
     <script src="tinymce\tinymce.min.js"></script>
     <script src="/javascript/script.js"></script>
-    <script>
-        const form = document.getElementById('form');
-        const title = document.getElementById('title');
-        const image = document.getElementById('image');
-        const body = document.getElementById('body');
-        
-        form.addEventListener('submit', (e) => {
-            if (!checkInputs()) {
-                e.preventDefault();
-            } else {
-                e.preventDefault();
-                let url = 'http://localhost:3000/api/posts';
-                let data = {
-                    "title": title.value,
-                    "image": image.value,
-                    "body": body.value
-                }
-                const options = {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                }
-                fetch(url, options)
-                    .then(res => res.json())
-                    .then(res => console.log(res)).catch(err => console.log(err));
-            }
-            console.log(checkInputs());
-        });
-        
-        function checkInputs() {
-            const titleValue = title.value.trim();
-            const imageValue = image.value.trim();
-            const bodyValue = body.value.trim();
-        
-            let t = false;
-            let b = false;
-            let i = false;
-        
-            if (titleValue === '') {
-                setErrorfor(title, 'Title cannot be blank');
-            } else if (titleValue.length <= 15) {
-                setErrorfor(title, 'Title must be greater than 15 characters');
-            } else {
-                setSuccessfor(title);
-                t = true;
-            }
-        
-            if (imageValue == '') {
-                setErrorfor(image, 'Please choose an image');
-            } else {
-                setSuccessfor(image);
-                i = true;
-            }
-        
-            if (bodyValue == '') {
-                setErrorfor(body, 'Body cannot be blank');
-            } else if (bodyValue.length <= 30) {
-                setErrorfor(body, 'Body must be greater than 30 characters');
-            } else {
-                setSuccessfor(body);
-                b = true;
-            }
-        
-            if (t && b && i) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        
-        function setErrorfor(input, message) {
-            const formControl = input.parentElement;
-            const small = formControl.querySelector('small');
-        
-            small.innerText = message;
-        
-            formControl.className = 'form-control error';
-        }
-        
-        function setSuccessfor(input) {
-            const formControl = input.parentElement;
-            formControl.className = 'form-control success';
-        }
-        
-            </script>
 
-    <!-- =========== Scripts =========  -->
+
     <script src="/javascript/dashboard.js"></script>
 
-    <!-- ====== ionicons ======= -->
+
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
