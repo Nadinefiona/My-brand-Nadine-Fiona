@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Portfolio</title>\
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/login.css">
+    <!-- <link rel="stylesheet" href="/css/login.css"> -->
 </head>
 <body>
-    <header class="header overall-layout">
+    <!-- <header class="header overall-layout">
         <a class="header__logo" href="#"><img src="/images/logo.png" alt=""></a>
         <nav class="header__nav">
           <a class="header__nav--link" href="#">Home</a>
@@ -25,46 +25,40 @@
           <div class="hamburger__line"></div>
         </div>
         </div>
-    </header>
+    </header> -->
     <div class="container-1">
-        <div class="paragraph">
-            <img src="/images/login11.png" alt="" width="40%" height="40%">
-            <h1>WELCOME</h1>
-        </div>
-        <form action="/Html/dashboard.html" method="post" onsubmit="return validateForm()">
-            <div class="text-field">
-                <input type="email" id="email" required>
-                <span></span>
+        <form action="dashboard.html" method="post" onsubmit="return validateForm()">
+            <div>
+                <input type="email" id="email" >
+                <span id="emailError" style="color: red;"></span>
                 <label>EMAIL</label>
-                <span id="emailError" style="color: red;"></span> <!-- Error message for email -->
             </div>
-            <div class="text-field">
-                <input type="password" id="password" required>
-                <span></span>
-                <label>PASSWORD</label><br/>
-                <span id="passwordError" style="color: red;"></span> <!-- Error message for password -->
+            <div>
+                <input type="password" id="password" >
+                <span id="passwordError" style="color: red;"></span>
+                <label>PASSWORD</label>
             </div>
-            <div class="pass">Forget password?</div>
-            <input type="submit" value="LOGIN">
-        </div>
-        
+            <div>
+                <input type="submit" value="LOGIN">
+            </div>
+        </form>
     </div>
     <script>
         function validateForm() {
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
-    
+
             var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    
+
             document.getElementById('emailError').innerText = '';
             document.getElementById('passwordError').innerText = '';
-    
+
             if (!emailRegex.test(email)) {
                 document.getElementById('emailError').innerText = 'Invalid email address';
                 return false;
             }
-    
+
             if (!passwordRegex.test(password)) {
                 document.getElementById('passwordError').innerText = 'Password must be at least 8 characters long and include lowercase, uppercase, number, and special character.';
                 return false;
@@ -72,6 +66,5 @@
             return true;
         }
     </script>
-    
 </body>
 </html>

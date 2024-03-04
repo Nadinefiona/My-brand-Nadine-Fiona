@@ -3,17 +3,17 @@
     width: 40%;
     box-sizing: border-box;
     background-color: #343D68;
-    margin: 1.6rem 33rem;
+    margin: 1.6rem 30rem;
     border-radius: 50px;
 }
 .container-1 .paragraph{
-    padding-top: 8rem;
+    padding-top: 5rem;
     text-align: center;
 }
 .container-1 .paragraph h1{
     padding: 15px 0 ;
     color: white; 
-    font-size: 65px; 
+    font-size: 40px; 
     font-family: Risque; 
     font-weight: 400; 
     word-wrap: break-word"
@@ -21,7 +21,6 @@
 }
 form .text-field{
     position: relative;
-    /* padding: 10px 0; */
     color: white;
     font-size: 14px;
     font-style: normal;
@@ -35,11 +34,12 @@ label{
     top: 50%;
     transform: translateY(10%);
     left: 15%;
-    font-size: 18px;
+    font-size: 15px;
     pointer-events: none;
     transition: .5s;
     color: white;
-    padding-right: 25rem;
+    display: inline-block;
+    padding-right: 22rem;
 }
 .text-field input{
     border: none;
@@ -69,8 +69,9 @@ label{
 .text-field input:valid ~ span::before{
   width: 100%;
 }
+
 form .pass{
-    padding-left: 18rem;
+    padding-left: 15rem;
     color: white;
     font-size: 15px;
     font-style: normal;
@@ -78,34 +79,27 @@ form .pass{
     line-height: normal;
     padding-top: .8rem;
 }
+form .pass:hover{
+    color: black;
+}
 input[type="submit"]{
     background-color: white;
-    color: #00523F;
+    color: #343D68;
     font-size: 25px;
     font-style: normal;
     font-weight: bold;
     line-height: normal;
-    padding: 14px 180px;
+    padding: 14px 150px;
     border: none;
-    border-radius: 20px;
+    border-radius: 30px;
     margin: 40px 0;
     cursor: pointer;
     outline: none;
     margin-bottom: 5rem;
-
 }
 input[type="submit"]:hover{
   background-color: #FFFC00;
   color: black;
-  transition: .5s;
-}
-
-form .signup-link {
-    color: #626262;
-    font-family: HelveticaNeue;
-    font-size: 12px;
-    font-style: normal;
-    line-height: normal;
 }
 form a{
     font-weight: bold;
