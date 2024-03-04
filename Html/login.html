@@ -3,37 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-    <nav class="nav-bar">
-        <h1><img src="/images/logo.png" alt=""></h1>
-        <nav class="nav-links">
-        <ul class="hideOnemobile"><a href="#">Home</a></ul>
-        <ul class="hideOnemobile"><a href="#">About</a></ul>
-        <ul class="hideOnemobile"><a href="#">Portfolio</a></ul>
-        <ul class="hideOnemobile"><a href="#">Blogs</a></ul>
-        <ul class="hideOnemobile"><a href="#">Contact</a></ul>
-        <ul class="hideOnemobile"><a href="#">Login</a></ul>
+    <header class="header overall-layout">
+        <a class="header__logo" href="#"><img src="/images/logo.png" alt=""></a>
+        <nav class="header__nav">
+          <a class="header__nav--link" href="#">Home</a>
+          <a class="header__nav--link" href="#">About</a>
+          <a class="header__nav--link" href="#">Portfolio</a>
+          <a class="header__nav--link" href="#">Blogs</a>
+          <a class="header__nav--link" href="#">Contact</a>
+          <a class="header__nav--link" href="/Html/login.html"> Login</a>
         </nav>
-    </nav>
-    <div class="Login">
-        <div class="Rectangle1"></div>
-        <img class="ChandelierWithGreenRoundLampshade" src="/images/login222.png" />
-        <div class="Line1"></div>
-        <div class="Line2"></div>
-        <div class="Email">Email</div>
-        <div class="Password">Password</div>
-        <div class="Welcome">WELCOME</div>
-        <div class="ForgotPassword">Forgot Password?</div>
-        <div class="Rectangle2"></div>
-        <a href="/Html/dashboard.html"><div class="LoginButton">LOGIN</div></a>
-        <img class="AvatarWithManInGreenShirtAndOrangeHat" src="/images/login11.png" />
-        <div class="UiRuman">@ui.ruman</div>
-        <div class="BrandsInstagram">
-            <div class="Vector"></div>
+        <div class="hamburger">
+          <div>
+          <div class="hamburger__line"></div>
+          <div class="hamburger__line"></div>
+          <div class="hamburger__line"></div>
         </div>
+        </div>
+    </header>
+    <div class="container-1">
+        <div class="paragraph">
+            <img src="/images/login11.png" alt="" width="40%" height="40%">
+            <h1>WELCOME</h1>
+        </div>
+        <form action="/Html/dashboard.html" method="post" onsubmit="return validateForm()">
+            <div class="text-field">
+                <input type="email" id="email" required>
+                <span></span>
+                <label>EMAIL</label>
+                <span id="emailError" style="color: red;"></span> <!-- Error message for email -->
+            </div>
+            <div class="text-field">
+                <input type="password" id="password" required>
+                <span></span>
+                <label>PASSWORD</label><br/>
+                <span id="passwordError" style="color: red;"></span> <!-- Error message for password -->
+            </div>
+            <div class="pass">Forget password?</div>
+            <input type="submit" value="LOGIN">
+        </div>
+        
     </div>
+    <script>
+        function validateForm() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+    
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    
+            document.getElementById('emailError').innerText = '';
+            document.getElementById('passwordError').innerText = '';
+    
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').innerText = 'Invalid email address';
+                return false;
+            }
+    
+            if (!passwordRegex.test(password)) {
+                document.getElementById('passwordError').innerText = 'Password must be at least 8 characters long and include lowercase, uppercase, number, and special character.';
+                return false;
+            }
+            return true;
+        }
+    </script>
+    
 </body>
 </html>

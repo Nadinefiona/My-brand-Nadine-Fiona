@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet"/>
+    <title>Blog Form</title>
+    <link rel="stylesheet" href="/addblog.css">
+    <style>
+        .fas {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .form-control {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .fas {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none;
+        }
+
+        .error-message {
+            color: red;
+            display: none;
+        }
+
+        .valid {
+            color: green;
+        }
+
+        .invalid {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <!-- <ion-icon name="logo-apple"></ion-icon> -->
+                        </span>
+                        <span class="title"></span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/Html/dashboard.html">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/Html/AllBlogs.html">
+                        <span class="icon">
+                            <ion-icon name="people-outline"></ion-icon>
+                        </span>
+                        <span class="title">Blogs</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/Html/messages.html">
+                        <span class="icon">
+                            <ion-icon name="people-outline"></ion-icon>                        </span>
+                        <span class="title">Messages</span>
+                    </a>
+                </li>
+
+
+                <li class="iconi">
+                    <a href="index.html">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>                        </span>
+                        <span class="title">Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Search here">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+
+                <div class="profile">
+                    <div class="user">
+                        <img src="/images/profile.png" alt="">
+                    </div>
+                    <span class="name">
+                        <h3>Anne</h3>
+                        <span>Admin</span>
+                    </span>
+                </div>   
+            </div>
+
+    <nav class="page">
+    <form action="" method="post" id="form" onsubmit="return validateForm()">
+        <h3>Add blog</h3>
+
+        <label for="title" class="sms">Title</label></br>
+        <div class="form-control">
+            <input type="text" id="title">
+            <i class="fas fa-check-circle" style="color: rgb(4, 252, 4);"></i>
+            <i class="fas fa-exclamation-circle" style="color: red;"></i>
+            <small class="error-message" id="titleError">Please enter a title with more than 15 characters.</small>
+        </div>
+
+        <label for="image" class="sms">Blog Image</label></br>
+        <div class="form-control">
+            <input type="file" id="image" name="file name">
+            <i class="fas fa-check-circle" style="color: rgb(4, 252, 4);"></i>
+            <i class="fas fa-exclamation-circle" style="color: red;"></i>
+            <small class="error-message" id="imageError">Please select an image.</small>
+        </div>
+
+        <label for="default">Blog Body</label>
+        <div class="form-control">
+            <textarea name="textarea" id="default" cols="30" rows="10"></textarea>
+            <i class="fas fa-check-circle" style="color: rgb(4, 252, 4);" ></i>
+            <i class="fas fa-exclamation-circle" style="color: red;"></i>
+            <small class="error-message" id="bodyError">Please enter the blog body with more than 50 characters.</small>
+        </div>
+
+        <button type="submit">Add</button>
+    </form>
+</nav>
+</div>
+</div>
+<script>
+    function validateForm() {
+        var title = document.getElementById('title').value;
+        var image = document.getElementById('image').value;
+        var body = document.getElementById('default').value;
+
+        var isValid = true;
+
+        if (title.trim().length <= 15) {
+            showError('title', 'Please enter a title with more than 15 characters.', 'titleError');
+            isValid = false;
+        } else {
+            showSuccess('title', 'titleError');
+        }
+
+        if (image.trim() === '') {
+            showError('image', 'Please select an image.', 'imageError');
+            isValid = false;
+        } else {
+            showSuccess('image', 'imageError');
+        }
+
+        if (body.trim().length <= 50) {
+            showError('default', 'Please enter the blog body with more than 50 characters.', 'bodyError');
+            isValid = false;
+        } else {
+            showSuccess('default', 'bodyError');
+        }
+
+        return isValid;
+    }
+
+    function showError(inputId, message, errorElementId) {
+        var inputElement = document.getElementById(inputId);
+        var parentElement = inputElement.parentElement;
+        var errorMessage = parentElement.querySelector('.error-message');
+        var successIcon = parentElement.querySelector('.fa-check-circle');
+        var errorIcon = parentElement.querySelector('.fa-exclamation-circle');
+
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+        successIcon.style.display = 'none';
+        errorIcon.style.display = 'block';
+
+        inputElement.classList.add('invalid');
+        inputElement.classList.remove('valid');
+
+        var errorElement = document.getElementById(errorElementId);
+        errorElement.style.display = 'block';
+    }
+
+    function showSuccess(inputId, errorElementId) {
+        var inputElement = document.getElementById(inputId);
+        var parentElement = inputElement.parentElement;
+        var errorMessage = parentElement.querySelector('.error-message');
+        var successIcon = parentElement.querySelector('.fa-check-circle');
+        var errorIcon = parentElement.querySelector('.fa-exclamation-circle');
+
+        errorMessage.style.display = 'none';
+        successIcon.style.display = 'block';
+        errorIcon.style.display = 'none';
+
+        inputElement.classList.remove('invalid');
+        inputElement.classList.add('valid');
+
+        var errorElement = document.getElementById(errorElementId);
+        errorElement.style.display = 'none';
+    }
+
+    document.getElementById('form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var title = document.getElementById('title').value;
+        var image = document.getElementById('image').value;
+        var body = document.getElementById('default').value;
+
+        var timestamp = Date.now();
+        var blogId = 'blog_' + timestamp;
+
+        var blog = {
+            id: blogId,
+            title: title,
+            image: image, // Store image URL
+            body: body,
+        };
+
+        var existingBlogs = localStorage.getItem('blogs');
+        var blogs = existingBlogs ? JSON.parse(existingBlogs) : [];
+
+        blogs.push(blog);
+
+        localStorage.setItem('blogs', JSON.stringify(blogs));
+
+        // Display success message only if the form is valid
+        if (validateForm()) {
+            document.getElementById('form').reset();
+            alert('Blog added successfully!');
+        }
+    });
+</script>
+<script src="tinymce\tinymce.min.js"></script>
+<script src="/script.js"></script>
+
+<script src="/javascript/dashboard.js"></script>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script defer src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT_ID.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

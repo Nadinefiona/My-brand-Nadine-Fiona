@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>update Article </title>
+    <title>Update Blog </title>
+     
+    <link
+    href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css"
+    rel="stylesheet"
+  />
     <link rel="stylesheet" href="/css/updateArticle.css">
 </head>
-
 <body>
-
     <div class="container">
         <div class="navigation">
             <ul>
@@ -24,7 +27,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/Html/dashboard.html">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -42,16 +45,16 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/Html/messages.html">
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>                        </span>
-                        <span class="title">Users</span>
+                        <span class="title">Messages</span>
                     </a>
                 </li>
 
 
                 <li class="iconi">
-                    <a href="/Html/index.html">
+                    <a href="index.html">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>                        </span>
                         <span class="title">Log Out</span>
@@ -85,26 +88,46 @@
             </div>
 
             <nav class="page">
-                <h3>Update  Article</h3>
-                <form action=""> 
+                
+                <form class="form" id="form">
+
+                    <h3>view blog</h3>
                     <label for=""  class="sms">Title</label></br>
-                    <input type="text"  ></br>
-                    <label for=""  class="sms">Body</label></br>
-                    <input type="text" class="text1" ></br>
-                    <label for="" class="sms">Image</label></br>
-                    <input type="file" id="my file" name="file name" ></br>
-                    <input type="button" value="Update">
+                    <div class="form-control"> 
+                       <input type="text" id="title"></br>
+                       <i class="fas fa-check-circle"></i>
+                       <i class="fas fa-exclamation-circle"></i>
+                       <small>Error</small></b>
+                   </div>
+                    <label for="" class="sms">blog Image</label></br>
+                    <div class="form-control">
+                        <input type="file" id="image" name="file name" ></br>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error</small></b>
+                    </div>
+                    <label for=""  class="sms">blog Body</label></br>
+                    <div class="form-control">
+                        <input type="text" class="text1" name="textarea" id="body"></br>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error</small></b>
+                    </div>
+
                 </form>
             </nav>
 
-           
+            
         </div>
     </div>
+    
+    <script src="tinymce\tinymce.min.js"></script>
+    <script src="/javascript/script.js"></script>
 
-    <!-- =========== Scripts =========  -->
+
     <script src="/javascript/dashboard.js"></script>
 
-    <!-- ====== ionicons ======= -->
+
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

@@ -86,7 +86,7 @@
 .page{
     display: flex;
     /* flex-direction: row; */
-    padding: 10rem 2rem 0 6rem;
+    padding: 5rem 2rem 0 4rem;
 }
 .page .text{
     padding: 5rem ;
@@ -125,7 +125,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 15rem;
+  gap: 10rem;
   margin-bottom: 10rem;
 }
 
@@ -154,7 +154,7 @@
 h1{
     text-align: center;
     font-size: 50px;
-    padding: 6rem 0 8rem 0;
+    padding: 6rem 0  ;
     color: #E84949;
 }
 
@@ -171,14 +171,14 @@ h1{
 
 
 
-/* porfolio */
+/******* porfolio ********/
 .portfolio{
   background-color: #343D68;
   color: #ffffff;
   justify-content: center;
 }
 .portfolio .heade{
-  padding: 3rem 0 2rem 0;
+  padding: 2rem 0 1rem 0;
 }
 .portfolio .heade h2{
   color: #ffffff;
@@ -201,7 +201,7 @@ h1{
 }
 .portfolio .cards .card img{
   width: 100%;
-  height: 70%;
+  height: 60%;
 }
 .portfolio .cards .card .description {
   color: #dfdcdc;
@@ -209,13 +209,14 @@ h1{
   font-size: 18px;  
 }
 .portfolio .cards .card button{
-  margin-bottom: 1rem;
+  margin-bottom: .8rem;
   background-color: rgb(255 ,255 ,255 , 0);
   color: rgb(251, 251, 252);
   border: 1.5px solid #ffffff;
   padding: .8rem 1rem;
   font-size: 1rem;
   border-radius: 5px;
+  cursor: pointer;
 }
 .portfolio .cards .card button ion-icon {
   color: #ffffff;
@@ -336,7 +337,8 @@ h1{
   padding: 3rem 0 3rem 10rem;
 }
 .contact .contact-page form input{
-  margin-bottom: 2rem;
+  margin-top: .5rem;
+  margin-bottom: .2rem ;
   padding: 1.2rem 25rem 1.2rem .8rem;
   color: #838383;
   font-size: 18px;
@@ -344,7 +346,7 @@ h1{
   border-radius: 5px;
   box-shadow: 1px 1px 1px 1px #838383;
 }
-.contact .contact-page form input[type="text"]{
+.contact .contact-page form  #message{
   padding-bottom: 7rem;
 }
 .contact .contact-page form button{
@@ -861,3 +863,6 @@ h1{
     
   }
 
+  .error-message {
+    color: red;
+}

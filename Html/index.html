@@ -107,23 +107,23 @@
           <div class="card">
               <img src="/images/port-1.png" alt="">
               <div class="description">Made an Online Job Project using PHP and SQLite Database.</div>
-              <button>Learn more<ion-icon name="arrow-forward-outline"></ion-icon></button>
+              <a href="https://github.com/Nadinefiona/My_project"><button>Learn more<ion-icon name="arrow-forward-outline"></ion-icon></button></a>
           </div>
           <div class="card">
               <img src="/images/port-2.png" alt="">
               <div class="description">Made Farming Management System App using React Native.</div>
-              <button>Learn more<ion-icon name="arrow-forward-outline"></ion-icon></button>
+              <a href="https://github.com/Nadinefiona/React-Native-App"><button>Learn more<ion-icon name="arrow-forward-outline"></ion-icon></button></a>
           </div>
           <div class="card">
               <img src="/images/port-3.png" alt="">
               <div class="description">Made a simple Online Shopping Project in JAVA.</div>
-              <button>Learn more<ion-icon name="arrow-forward-outline"></ion-icon></button>
+              <a href="https://github.com/Nadinefiona/Online_Shopping"><button>Learn more<ion-icon name="arrow-forward-outline"></ion-icon></button></a>
           </div>
       </div>
   </div>
   <div class="blogs">
       <h1>Blogs</h1>
-      <div class="all-cards">
+      <div class="all-cards" id="blogContainer" >
           <div class="blog-card">
               <img src="/images/blog-1.png" alt="">
               <span><p>July 30, 2024 </p> | Google </span>
@@ -252,11 +252,13 @@
       <h1>Contact me</h1>
       <div class="contact-page">
           <img class="ii" src="/images/contact.png" alt="">
-          <form action="">
-                  <input type="email" name="" id="" placeholder="Enter email address"></br>
-                  <input type="text" name="" id="" placeholder="Enter message..."></br>
-                  <button>Send Message <img src="/images/submit-icon.png" alt=""></button>
-          </form>
+          <form id="myForm" onsubmit="return validateForm()">
+            <input type="text" name="name" id="name" placeholder="Enter your Name "></br><span class="error-message" id="nameError"></span></br>
+            <input type="email" name="email" id="email" placeholder="Enter email address"></br><span class="error-message" id="emailError"></span></br>
+            <input type="text" name="message" id="message" placeholder="Enter message..."></br><span class="error-message" id="messageError"></span></br>
+            <button type="submit">Send Message <img src="/images/submit-icon.png" alt=""></button>
+        </form>
+    
       </div>
   </div>
 
@@ -268,16 +270,16 @@
         <div class="social-media-links">
             <div class="title-icons">My social media links:</div>
             <div class="icons">
-                <ion-icon name="logo-linkedin"></ion-icon>
-                <ion-icon name="logo-whatsapp"></ion-icon>
-                <ion-icon name="logo-twitter"></ion-icon>
-                <ion-icon name="mail-outline"></ion-icon>
+                <a href="https://www.linkedin.com/in/byukusenge-nadine-fiona-305b9a232"><ion-icon name="logo-linkedin"></ion-icon></a>
+                <a href=""><ion-icon name="logo-whatsapp"></ion-icon></a>
+                <a href="https://twitter.com/nadinefiona"><ion-icon name="logo-twitter"></ion-icon></a>
+                <a href="mailto:nadinefiona9@gmail.com"><ion-icon name="mail-outline"></ion-icon></a>
             </div>
         </div>
         <div class="github-link">
             <div>More projects I’ve worked on</div>
             <span>
-                <ion-icon name="logo-github"></ion-icon>
+                <a href="https://github.com/Nadinefiona"><ion-icon name="logo-github"></ion-icon></a>
                 <div class="nm">@Nadinefiona on github</div>
             </span>
         </div>
@@ -287,23 +289,25 @@
     </div>
 </div>
 
+   <script src="/javascript/contact.js"></script>
+
    <script>
     let likebtn = document.querySelector('#likebtn');
     let dislikebtn = document.querySelector('#dislikebtn');
-
+    
     let input1 = document.querySelector('#input1');
     let input2 = document.querySelector('#input2');
-
-    letbtn.addEventListener('click', ()=>{
+    
+    likebtn.addEventListener('click', () => {
       input1.value = parseInt(input1.value) + 1;
       input1.style.color = '#12ff00';
-    })
-
-    letbtn.addEventListener('click', ()=>{
+    });
+    
+    dislikebtn.addEventListener('click', () => {
       input2.value = parseInt(input2.value) + 1;
       input2.style.color = '#ff0000';
-    })
-
+    });
+    
    </script>
 
     <script>
@@ -322,6 +326,30 @@
        });
 
     </script>
+    <script>
+      var storedBlogs = localStorage.getItem('blogs');
+      var blogs = storedBlogs ? JSON.parse(storedBlogs) : [];
+  
+      var blogContainer = document.getElementById('blogContainer');
+  
+      blogs.forEach(function (blog) {
+          var blogCard = document.createElement('div');
+          blogCard.classList.add('blog-card');
+          blogCard.innerHTML = `
+              <img src="${blog.image}" alt="">
+              <span><p>${new Date().toLocaleDateString()} </p> | Author </span>
+              <div class="details">
+                  ${blog.body}
+              </div>
+              <button onclick="readMore('${blog.id}')">Read More</button>
+          `;
+          blogContainer.appendChild(blogCard);
+      });
+  
+      function readMore(blogId) {
+          // window.location.href = '/Html/singleblog.html?id=' + blogId;
+      }
+  </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

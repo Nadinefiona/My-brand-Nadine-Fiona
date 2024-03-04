@@ -142,10 +142,10 @@ body {
   background: var(--white);
   transition: 0.5s;
 }
-.main.active {
-  width: calc(100% - 80px);
-  left: 80px;
-}
+  .main.active {
+    width: calc(100% - 80px);
+    left: 80px;
+  }
 
 .topbar {
   width: 100%;

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>\
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- <link rel="stylesheet" href="/css/login.css"> -->
+</head>
+<body>
+    <!-- <header class="header overall-layout">
+        <a class="header__logo" href="#"><img src="/images/logo.png" alt=""></a>
+        <nav class="header__nav">
+          <a class="header__nav--link" href="#">Home</a>
+          <a class="header__nav--link" href="#">About</a>
+          <a class="header__nav--link" href="#">Portfolio</a>
+          <a class="header__nav--link" href="#">Blogs</a>
+          <a class="header__nav--link" href="#">Contact</a>
+          <a class="header__nav--link" href="/Html/login.html"> Login</a>
+        </nav>
+        <div class="hamburger">
+          <div>
+          <div class="hamburger__line"></div>
+          <div class="hamburger__line"></div>
+          <div class="hamburger__line"></div>
+        </div>
+        </div>
+    </header> -->
+    <div class="container-1">
+        <form action="dashboard.html" method="post" onsubmit="return validateForm()">
+            <div>
+                <input type="email" id="email" >
+                <span id="emailError" style="color: red;"></span>
+                <label>EMAIL</label>
+            </div>
+            <div>
+                <input type="password" id="password" >
+                <span id="passwordError" style="color: red;"></span>
+                <label>PASSWORD</label>
+            </div>
+            <div>
+                <input type="submit" value="LOGIN">
+            </div>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            document.getElementById('emailError').innerText = '';
+            document.getElementById('passwordError').innerText = '';
+
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').innerText = 'Invalid email address';
+                return false;
+            }
+
+            if (!passwordRegex.test(password)) {
+                document.getElementById('passwordError').innerText = 'Password must be at least 8 characters long and include lowercase, uppercase, number, and special character.';
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
