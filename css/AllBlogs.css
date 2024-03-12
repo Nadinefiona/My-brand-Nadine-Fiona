@@ -407,16 +407,30 @@ body {
 .page a{
     text-decoration: none;
 }
-.page .all-blogs .one-blog{
+/* .page .all-blogs .one-blog{
     display: flex;
     padding: 2rem 7rem;
-}
-.page .all-blogs .one-blog{
+} */
+/* .page .all-blogs .one-blog{
     display: flex;
+    flex-direction: column;
+
+} */
+.page .all-blogs .one-blog{
+  display: flex;
+  padding: 2rem 7rem;
+}
+
+.one-blog div {
+  display: inline-flex;
+  flex-direction: column; /* If you want the content to stack vertically */
+  margin-left: 10px; /* Adjust as needed */
 }
 .page .all-blogs .one-blog div h4{
   font-size: 23px;
   padding-bottom: 1rem;
+  margin-right: 2rem;
+  margin-left: 2rem;
 }
 .page .all-blogs .one-blog div{
     padding: 2px 2rem;
@@ -427,6 +441,7 @@ body {
     width: 15%;
     height: 15%;
 }
+
 .page .all-blogs .one-blog .buttons button{
     color: #ffffff;
     background-color: #343D68;
@@ -447,7 +462,7 @@ body {
     color: #ffffff;
     background-color: #343D68;
     border: none;
-    padding: .6rem 2rem;
+    padding: .4rem 2rem;
     border-radius: 30px;
     font-size: 22px;
     font-weight: 800;

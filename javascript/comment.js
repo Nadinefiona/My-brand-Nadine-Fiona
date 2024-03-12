@@ -18,7 +18,6 @@ function validateForm() {
         isValid = false;
     }
 
-    // Using a simple email validation regex
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         emailError.innerHTML = "Enter a valid email address";

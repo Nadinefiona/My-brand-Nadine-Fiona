@@ -16,9 +16,16 @@
             width: 100%;
             height: auto;
         }
+        .one-blog {
+            margin-bottom: 20px;
+        }
+
+        .one-blog img {
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="navigation">
@@ -96,23 +103,41 @@
             <nav class="page">
                 <div class="heading">
                     <h3>All Blogs</h3>
+                   
                 </div>
+                <a href="/addblog.html" style="margin-left: 1rem;"><button>add blog</button></a>
                 <div class="all-blogs">
-                    <!-- JavaScript will populate blogs here -->
+                    <div class="one-blog">
+                        <img src="" alt="Blog Image">
+                        <div class="content">
+                            <h4></h4>
+                            <p></p>
+                        </div>
+                        <div class="buttons">
+                            <button>View</button>
+                            <button>Update</button>
+                            <button>delete</button>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </div>
     </div>
 
-    <script>
-        // Function to populate blogs from local storage
-        function populateBlogs() {
-            var allBlogsContainer = document.querySelector('.all-blogs');
-            allBlogsContainer.innerHTML = ''; // Clear existing content
+<script>
+    
+    function populateBlogs() {
+    var allBlogsContainer = document.querySelector('.all-blogs');
+    allBlogsContainer.innerHTML = '';
 
-            var blogs = localStorage.getItem('blogs');
-            if (blogs) {
-                blogs = JSON.parse(blogs);
+    fetch('https://mybrand-be-2.onrender.com/api/blogs')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+            var blogs = data.data;
+
+            if (Array.isArray(blogs)) {
                 blogs.forEach(function (blog) {
                     var blogElement = document.createElement('div');
                     blogElement.classList.add('one-blog');
@@ -121,80 +146,131 @@
                     image.src = blog.image;
                     blogElement.appendChild(image);
 
+                    var contentContainer = document.createElement('div');
+                    contentContainer.classList.add('content');
+
                     var title = document.createElement('h4');
                     title.textContent = blog.title;
-                    blogElement.appendChild(title);
+                    contentContainer.appendChild(title);
 
                     var body = document.createElement('p');
-                    body.textContent = blog.body;
-                    blogElement.appendChild(body);
+                    var truncatedContent = blog.content.substring(0, 110);
+                    if (blog.content.length > 110) {
+                        truncatedContent += '...';
+                    }
+                    body.textContent = truncatedContent;
+                    contentContainer.appendChild(body);
+
+                    blogElement.appendChild(contentContainer);
+
+                    var buttonsContainer = document.createElement('div');
+                    buttonsContainer.classList.add('buttons');
 
                     var viewButton = document.createElement('button');
                     viewButton.textContent = 'View';
                     viewButton.addEventListener('click', function () {
-                        viewBlog(blog);
+                        viewBlog(blog._id); // Use blog._id here
                     });
-                    blogElement.appendChild(viewButton);
+                    buttonsContainer.appendChild(viewButton);
 
                     var updateButton = document.createElement('button');
                     updateButton.textContent = 'Update';
                     updateButton.addEventListener('click', function () {
                         updateBlog(blog);
                     });
-                    blogElement.appendChild(updateButton);
+                    buttonsContainer.appendChild(updateButton);
+
 
                     var deleteButton = document.createElement('button');
                     deleteButton.textContent = 'Delete';
+                    deleteButton.setAttribute('data-blog-id', blog._id); // Use blog._id here
                     deleteButton.addEventListener('click', function () {
-                        deleteBlog(blog);
+                        var blogId = deleteButton.getAttribute('data-blog-id');
+                        var blogToDelete = {
+                            title: blog.title,
+                            blogId: blogId
+                        };
+                        confirmDelete(blogToDelete);
                     });
-                    blogElement.appendChild(deleteButton);
+                    buttonsContainer.appendChild(deleteButton);
+
+                    blogElement.appendChild(buttonsContainer);
 
                     allBlogsContainer.appendChild(blogElement);
                 });
+            } else {
+                console.error('Expected an array of blogs, but received:', blogs);
             }
+        })
+        .catch(error => {
+            console.error('Error fetching blogs:', error);
+        });
+}
+
+function viewBlog(blogId) {
+    window.location.href = `viewblog.html?id=${blogId}`; 
+}
+
+
+
+function updateBlog(blog) {
+    window.location.href = `updateblog.html?blogId=${blog.id}
+    &title=${encodeURIComponent(blog.title)}
+    &image=${encodeURIComponent(blog.image)}
+    &content=${encodeURIComponent(blog.content)}`;
+}
+
+
+
+function confirmDelete(blog) {
+    var confirmation = confirm('Are you sure you want to delete the blog with title: ' + blog.title);
+    if (confirmation) {
+        if (blog.blogId) {
+            deleteBlog(blog);
+        } else {
+            alert('Error: blogId is undefined. Cannot delete blog.');
         }
+    }
+}
 
-        // Function to view a blog
-        function viewBlog(blog) {
-            alert('Viewing blog with title: ' + blog.title);
-            // Implement view functionality here, e.g., navigate to a new page to display the blog in detail
-            // Example: You can redirect to a new page passing blog data in query params
-            window.location.href = 'viewBlog.html?blogId=' + blog.id;
-        }
+function deleteBlog(blog) {
+    if (!blog.blogId) {
+        alert('Error: blogId is undefined. Cannot delete blog.');
+        return;
+    }
 
-        // Function to update a blog
-
-        function updateBlog(blog) {
-            // Pass the blog information via URL parameters to the updateBlog.html page
-            window.location.href = '/updateblog.html?blogId=' + blog.id +
-                '&title=' + encodeURIComponent(blog.title) +
-                '&image=' + encodeURIComponent(blog.image) +
-                '&body=' + encodeURIComponent(blog.body);
-        }
-
-        // Function to delete a blog
-        function deleteBlog(blog) {
-            var confirmDelete = confirm('Are you sure you want to delete the blog with title: ' + blog.title);
-            if (confirmDelete) {
-                // Implement delete functionality here, i.e., remove the blog from local storage and refresh the page
-                var blogs = JSON.parse(localStorage.getItem('blogs'));
-                var updatedBlogs = blogs.filter(function (b) {
-                    return b.id !== blog.id;
-                });
-                localStorage.setItem('blogs', JSON.stringify(updatedBlogs));
-                populateBlogs(); // Refresh the list of blogs
+    fetch('https://mybrand-be-2.onrender.com/api/blogs/' + blog.blogId, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Q4QGV4YW1wbGUuY29tIiwiaWF0IjoxNzA5NzEzMjAyfQ.tKf_2UJ_3Lhm1o2fIaY3EHnEpqoPeIXr6Cj_z15pckQ'
             }
-        }
-
-        // Populate blogs when the page loads
-        window.onload = function () {
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Blog deleted successfully:', data);
+            showNotification('Blog deleted successfully.');
             populateBlogs();
-        };
-    </script>
+        })
+        .catch(error => {
+            console.error('Error deleting blog:', error);
+            alert('Error deleting blog. Please try again later.');
+        });
+}
+
+window.onload = function () {
+    populateBlogs();
+};
+
+</script>
+    <script src="/javascript/dashboard.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script defer src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT_ID.js" crossorigin="anonymous"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script defer src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT_ID.js" crossorigin="anonymous"></script>
 
 </body>
 

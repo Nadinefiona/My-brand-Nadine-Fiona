@@ -147,12 +147,65 @@
             <small class="error-message" id="bodyError">Please enter the blog body with more than 50 characters.</small>
         </div>
 
+        <input type="hidden" name="blogId" id="blogId">
+
         <button type="submit">Update</button>
     </form>
 </nav>
 </div>
 </div>
+
+
 <script>
+    window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const title = urlParams.get('title');
+        const image = urlParams.get('image');
+        const content = urlParams.get('content');
+        const blogId = urlParams.get('blogId');
+
+        document.getElementById('title').value = title;
+        document.getElementById('image').value = image;
+        document.getElementById('default').value = content;
+        document.getElementById('blogId').value = blogId;
+    };
+
+    document.getElementById('form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const updatedTitle = document.getElementById('title').value;
+        const updatedImage = document.getElementById('image').value;
+        const updatedContent = document.getElementById('default').value;
+        const blogId = document.getElementById('blogId').value;
+
+        var formData = new FormData();
+        formData.append('title', updatedTitle);
+        formData.append('image', updatedImage);
+        formData.append('content', updatedContent);
+
+        fetch('https://mybrand-be-2.onrender.com/api/blogs/' + blogId, {
+            method: 'PATCH',
+            body: formData,
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+            alert('Blog updated successfully.');
+            window.location.href = '/Html/AllBlogs.html';
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Failed to update the blog.');
+        });
+    });
+</script>
+
+<!-- <script>
     window.onload = function () {
         // Retrieve blog information from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
@@ -196,7 +249,7 @@
 
         window.location.href = '/Html/AllBlogs.html';
     });
-</script>
+</script> -->
 
 <script src="tinymce\tinymce.min.js"></script>
 <script src="/script.js"></script>
