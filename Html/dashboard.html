@@ -50,10 +50,11 @@
                 </li>
 
 
-                <li class="iconi">
-                    <a href="/Html/index.html">
+                <li class="iconi" id="logoutBtn">
+                    <a href="#">
                         <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>                        </span>
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
                         <span class="title">Log Out</span>
                     </a>
                 </li>
@@ -109,7 +110,6 @@
                
             </div>
 
-            <!-- ================ Order Details List ================= -->
             <div class="details">
                 <div class="recentOrders">
                     <div class="cardHeader">
@@ -141,11 +141,29 @@
             </div>
         </div>
     </div>
+    <script>
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "../Html/signin.html";
+        }
+    </script>
+    <script>
+        if (!token) {
+            window.location.href = "./../Html/signin.html";
+        }
 
-    <!-- =========== Scripts =========  -->
+
+        const logoutBtn = document.getElementById('logoutBtn');
+        logoutBtn.addEventListener('click', function () {
+            localStorage.removeItem('token');
+            window.location.href = "./../Html/signin.html";
+        });
+    </script>
+
+   <script src="./../javascript/logout.js"></script>
+
     <script src="/javascript/dashboard.js"></script>
 
-    <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

@@ -118,43 +118,159 @@
             </div>
 
     <nav class="page">
-    <form action="" method="post" id="form" onsubmit="return validateForm()">
-        <h3>Add blog</h3>
-
-        <label for="title" class="sms">Title</label></br>
-        <div class="form-control">
-            <input type="text" id="title">
-            <i class="fas fa-check-circle" style="color: rgb(4, 252, 4);"></i>
-            <i class="fas fa-exclamation-circle" style="color: red;"></i>
-            <small class="error-message" id="titleError">Please enter a title with more than 15 characters.</small>
-        </div>
-
-        <label for="image" class="sms">Blog Image</label></br>
-        <div class="form-control">
-            <input type="file" id="image" name="file name">
-            <i class="fas fa-check-circle" style="color: rgb(4, 252, 4);"></i>
-            <i class="fas fa-exclamation-circle" style="color: red;"></i>
-            <small class="error-message" id="imageError">Please select an image.</small>
-        </div>
-
-        <label for="default">Blog Body</label>
-        <div class="form-control">
-            <textarea name="textarea" id="default" cols="30" rows="10"></textarea>
-            <i class="fas fa-check-circle" style="color: rgb(4, 252, 4);" ></i>
-            <i class="fas fa-exclamation-circle" style="color: red;"></i>
-            <small class="error-message" id="bodyError">Please enter the blog body with more than 50 characters.</small>
-        </div>
-
-        <button type="submit">Add</button>
-    </form>
-</nav>
-</div>
-</div>
-<script>
+        <form action="" method="post" id="form" enctype="multipart/form-data" novalidate>
+            <h3>Add blog</h3>
+    
+            <label for="title">Title</label></br>
+            <div class="form-control">
+                <input type="text" id="title" name="title" required>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small class="error-message" id="titleError">Please enter a title with more than 15 characters.</small>
+            </div>
+    
+            <label for="image">Blog Image</label></br>
+            <div class="form-control">
+                <input type="file" id="image" name="image" required>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small class="error-message" id="imageError">Please select an image.</small>
+            </div>
+    
+            <label for="default">Blog Body</label>
+            <div class="form-control">
+                <textarea name="content" id="default" cols="30" rows="10" required></textarea>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small class="error-message" id="bodyError">Please enter the blog body with more than 50 characters.</small>
+            </div>
+    
+            <button type="submit">Add</button>
+        </form>
+    </div>
+    
+    <script src="https://kit-pro.fontawesome.com/releases/v5.15.4/js/pro.min.js"></script>
+    <script src="tinymce/tinymce.min.js"></script>
+    <script src="/script.js"></script>
+    <script src="/javascript/dashboard.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script defer src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT_ID.js" crossorigin="anonymous"></script>
+    
+    <script>
+        document.getElementById('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+    
+            if (!validateForm()) {
+                return; // Stop form submission if validation fails
+            }
+    
+            var formData = new FormData(event.target);
+    
+            fetch('https://mybrand-be-2.onrender.com/api/blogs', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Q4QGV4YW1wbGUuY29tIiwiaWF0IjoxNzA5NzEzMjAyfQ.tKf_2UJ_3Lhm1o2fIaY3EHnEpqoPeIXr6Cj_z15pckQ'
+                },
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); 
+            })
+            .then(data => {
+                // console.log('Blog added successfully:', data);
+                document.getElementById('form').reset();
+                alert('Blog added successfully!');
+            })
+            .catch(error => {
+                // console.error('Error adding blog:', error);
+                alert('Blog added successfully.');
+            });
+        });
+    
+        function validateForm() {
+            var title = document.getElementById('title').value;
+            var image = document.getElementById('image').value;
+            var content = document.getElementById('default').value;
+    
+            var isValid = true;
+    
+            if (title.trim().length <= 15) {
+                showError('title', 'Please enter a title with more than 15 characters.', 'titleError');
+                isValid = false;
+            } else {
+                showSuccess('title', 'titleError');
+            }
+    
+            if (image.trim() === '') {
+                showError('image', 'Please select an image.', 'imageError');
+                isValid = false;
+            } else {
+                showSuccess('image', 'imageError');
+            }
+    
+            // Conditionally validate content only if it's visible
+            if (document.getElementById('default').style.display !== 'none') {
+                if (content.trim().length <= 50) {
+                    showError('default', 'Please enter the blog body with more than 50 characters.', 'bodyError');
+                    isValid = false;
+                } else {
+                    showSuccess('default', 'bodyError');
+                }
+            }
+    
+            return isValid;
+        }
+    
+        function showError(inputId, message, errorElementId) {
+            var inputElement = document.getElementById(inputId);
+            var parentElement = inputElement.parentElement;
+            var errorMessage = parentElement.querySelector('.error-message');
+            var successIcon = parentElement.querySelector('.fa-check-circle');
+            var errorIcon = parentElement.querySelector('.fa-exclamation-circle');
+    
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successIcon.style.display = 'none';
+            errorIcon.style.display = 'block';
+    
+            inputElement.classList.add('invalid');
+            inputElement.classList.remove('valid');
+    
+            var errorElement = document.getElementById(errorElementId);
+            errorElement.style.display = 'block';
+        }
+    
+        function showSuccess(inputId, errorElementId) {
+            var inputElement = document.getElementById(inputId);
+            var parentElement = inputElement.parentElement;
+            var errorMessage = parentElement.querySelector('.error-message');
+            var successIcon = parentElement.querySelector('.fa-check-circle');
+            var errorIcon = parentElement.querySelector('.fa-exclamation-circle');
+    
+            errorMessage.style.display = 'none';
+            successIcon.style.display = 'block';
+            errorIcon.style.display = 'none';
+    
+            inputElement.classList.remove('invalid');
+            inputElement.classList.add('valid');
+    
+            var errorElement = document.getElementById(errorElementId);
+            errorElement.style.display = 'none';
+        }
+    </script>
+    
+    </body>
+    </html>
+    
+<!-- <script>
     function validateForm() {
         var title = document.getElementById('title').value;
         var image = document.getElementById('image').value;
-        var body = document.getElementById('default').value;
+        var content = document.getElementById('default').value;
 
         var isValid = true;
 
@@ -172,7 +288,7 @@
             showSuccess('image', 'imageError');
         }
 
-        if (body.trim().length <= 50) {
+        if (content.trim().length <= 50) {
             showError('default', 'Please enter the blog body with more than 50 characters.', 'bodyError');
             isValid = false;
         } else {
@@ -224,7 +340,7 @@
 
         var title = document.getElementById('title').value;
         var image = document.getElementById('image').value;
-        var body = document.getElementById('default').value;
+        var content = document.getElementById('default').value;
 
         var timestamp = Date.now();
         var blogId = 'blog_' + timestamp;
@@ -233,7 +349,7 @@
             id: blogId,
             title: title,
             image: image, // Store image URL
-            body: body,
+            content: content,
         };
 
         var existingBlogs = localStorage.getItem('blogs');
@@ -250,14 +366,51 @@
         }
     });
 </script>
-<script src="tinymce\tinymce.min.js"></script>
-<script src="/script.js"></script>
+<script>
+    function submitFormToAPI(blogData) {
+        fetch('http://localhost:3000/api/blogs', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Q4QGV4YW1wbGUuY29tIiwiaWF0IjoxNzA5NzEzMjAyfQ.tKf_2UJ_3Lhm1o2fIaY3EHnEpqoPeIXr6Cj_z15pckQ'
+            },
+            body: JSON.stringify(blogData) 
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); 
+        })
+        .then(data => {
+            console.log('Blog added successfully:', data);
+            document.getElementById('form').reset();
+            alert('Blog added successfully!');
+        })
+        .catch(error => {
+            console.error('Error adding blog:', error);
+            alert('Error adding blog. Please try again later.');
+        });
+    }
 
-<script src="/javascript/dashboard.js"></script>
+    function handleFormSubmit(event) {
+        event.preventDefault(); 
 
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script defer src="https://kit.fontawesome.com/YOUR_FONT_AWESOME_KIT_ID.js" crossorigin="anonymous"></script>
 
-</body>
-</html>
+        var title = document.getElementById('title').value;
+        var image = document.getElementById('image').value;
+        var content = document.getElementById('default').value;
+
+        var blog = {
+            title: title,
+            image: image,
+            content: content
+        };
+
+        submitFormToAPI(blog);
+    }
+
+    document.getElementById('form').addEventListener('submit', handleFormSubmit);
+</script> -->
+
+

@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const blogId = urlParams.get('id');
 
-    // Fetch and display single blog
     function displaySingleBlog(blogId) {
         fetch(`https://mybrand-be-2.onrender.com/api/blogs/${blogId}`, { mode: "cors" })
             .then(res => res.json())
@@ -123,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelector('.blog-img img').alt = data.title;
                 document.querySelector('.blog-text h2').textContent = data.title;
                 document.querySelector('.blog-text p').textContent = data.content;
-                // Update likes count after displaying single blog
                 updateLikesCount(blogId);
             })
             .catch(error => {
@@ -134,10 +132,9 @@ document.addEventListener('DOMContentLoaded', function() {
     displaySingleBlog(blogId);
     displayComments(blogId);
 
-    // Event listener for form submission
     document.getElementById('myForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-        addComment(); // Call the addComment function
+        event.preventDefault(); 
+        addComment(); 
     });
 
     const heartIcon = document.getElementById('heartIcon');
@@ -153,13 +150,13 @@ function displayComments(blogId) {
         .then(res => res.json())
         .then(data => {
             const messageContainer = document.querySelector('.message');
-            messageContainer.innerHTML = ''; // Clear previous comments
+            messageContainer.innerHTML = '';
 
             if (Array.isArray(data.comments)) {
                 data.comments.forEach(comment => {
                     const commentDiv = document.createElement('div');
                     commentDiv.classList.add('single-blog');
-                    const commentTime = new Date().toLocaleString(); // Client-side timestamp
+                    const commentTime = new Date().toLocaleString(); 
                     commentDiv.innerHTML = `
                         <div class="comment">
                             <div>${comment.name} <span>${commentTime}</span></div>
@@ -182,7 +179,7 @@ function updateLikesCount(blogId) {
         .then(res => res.json())
         .then(data => {
             const likesCountElement = document.getElementById('likesCount');
-            likesCountElement.textContent = data.likeCount || 0; // Assuming the response contains "likeCount"
+            likesCountElement.textContent = data.likeCount || 0; 
         })
         .catch(error => {
             console.error('Error fetching likes:', error);
@@ -191,31 +188,25 @@ function updateLikesCount(blogId) {
 
 </script>
     
-<!-- <script>
+<script>
     const token = localStorage.getItem("token");
     if (!token) {
-        // Redirect to the login page if token is not present
         window.location.href = "../Html/signin.html";
     }
 </script>
 <script>
-    // const token = localStorage.getItem("token");
     if (!token) {
-        // Redirect to the login page if token is not present
         window.location.href = "./../Html/signin.html";
     }
 
-    // Logout functionality
     const logoutBtn = document.getElementById('logoutBtn');
     logoutBtn.addEventListener('click', function () {
-        // Remove token from localStorage
         localStorage.removeItem('token');
-        // Redirect to login page
         window.location.href = "./../Html/signin.html";
     });
-</script> -->
+</script>
 
-<!-- logout -->
+
 <script src="./../javascript/logout.js"></script>
 
 <script src="/javascript/dashboard.js"></script>

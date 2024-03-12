@@ -394,6 +394,10 @@ body {
 
 /******************* Body ***************************/
 
+.page {
+  color: #343D68;
+  
+}
 .page h3 {
     color: #343D68;
    text-align: center;
@@ -401,62 +405,27 @@ body {
    font-style: normal;
    font-family: Arial, Helvetica, sans-serif;
    font-weight: 600;
-   font-size: 3rem;
+   font-size: 2.5rem;
    padding-bottom: 40px;
 }
 .page a{
     text-decoration: none;
 }
-.page .all-blogs{
+.page .all-messages{
     margin-left: 10rem;
+    margin-top: 2rem;
 }
-.page .all-blogs .one-blog div{
-    padding-right: 3rem;
-    font-size: 20px;
+.page .all-messages table thead{ 
+  font-size: 22px;
+
 }
-.page .all-blogs .one-blog{
-    display: flex;
-    padding: 2rem 7rem;
+.page .all-messages table tbody{ 
+  font-size: 16px;
 }
-.page .all-blogs .one-blog{
-    display: flex;
+.page .all-messages table thead tr th{
+  padding-right: 5rem;
+  padding-bottom: 1rem;
 }
-.page .all-blogs .one-blog p{
-    padding: 2px 2rem;
-    font-size: 18px;
-    color: #343D68;
-}
-.page .all-blogs .one-blog img{
-    width: 10%;
-    height: 10%;
-}
-.page .all-blogs .one-blog .buttons button{
-    color: #ffffff;
-    background-color: #343D68;
-    border: none;
-    padding: .6rem 2rem;
-    border-radius: 30px;
-    font-size: 22px;
-    font-weight: 800;
-    margin-bottom: .5rem;
-    cursor: pointer;
-}
-.page .heading{
-    margin-bottom: 2rem;
-    align-items: center;
-    margin-left: 1rem;
-}
-.page button{
-    color: #ffffff;
-    background-color: #343D68;
-    border: none;
-    padding: .6rem 2rem;
-    border-radius: 30px;
-    font-size: 22px;
-    font-weight: 800;
-    margin-bottom: .5rem;
-    cursor: pointer;
-    /* float: right; */
-    margin-bottom: 2rem;
-    /* align-self: flex-end; */
+.page .all-messages table tbody tr td:last-child{
+  padding-left: 2rem;
 }
