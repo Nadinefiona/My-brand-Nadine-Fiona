@@ -31,14 +31,14 @@
         <a class="header__logo" href="#"><img src="/images/logo.png" alt=""></a>
 
         <nav class="header__nav">
-          <a class="header__nav--link" href="#">Home</a>
-          <a class="header__nav--link" href="#">About</a>
-          <a class="header__nav--link" href="#">Portfolio</a>
-          <a class="header__nav--link" href="#">Blogs</a>
-          <a class="header__nav--link" href="#">Contact</a>
-          <a class="header__nav--link" href="/Html/signin.html" id="clickableWord"> Login</a>
+          <a class="header__nav--link" href="#home">Home</a>
+          <a class="header__nav--link" href="#about">About</a>
+          <a class="header__nav--link" href="#portfolio">Portfolio</a>
+          <a class="header__nav--link" href="#blog">Blogs</a>
+          <a class="header__nav--link" href="#contact">Contact</a>
+          <a class="header__nav--link" href="/Html/signin.html"> Login</a>
+          
         </nav>
-  
         <div class="hamburger">
           <div>
           <div class="hamburger__line"></div>
@@ -49,7 +49,8 @@
     </header>
 
 
-    <div class="page">
+
+    <div class="page" id="home">
       <div class="text">
       <h3>Hi👋, I’m a</h3>
       <h2>software developer</h2>
@@ -61,7 +62,7 @@
       </div>
     </div>
 
-    <h1>About</h1>
+    <h1 id="about">About</h1>
     <section class="personal-info overall-layout section__padding">
       <!-- <h2 class="personal-info__content--title section__title">
         About
@@ -75,6 +76,7 @@
           I am a collaborative software engineer with over 3 years of experience in UR and i have a vast experience in the following web technologies:</br>
 
         </p>
+
 
         <ul class="personal-info__content--experience">
           <div>
@@ -118,7 +120,7 @@
     </section>
 
 
-    <div class="portfolio">
+    <div class="portfolio" id="portfolio">
       <div class="heade">
           <h2><img src="/images/port-icon.png" alt="">Portfolio</h2>
           <h4>A select number of projects</h4>
@@ -141,7 +143,7 @@
           </div>
       </div>
   </div>
-  <div class="blogs">
+  <div class="blogs" id="blog">
       <h1>Blogs</h1>
       <div class="all-cards" id="blogContainer" >
           <!-- <div class="blog-card">
@@ -271,7 +273,7 @@
           </div>
       </div> -->
   </div>
-  <div class="contact">
+  <div class="contact" id="contact">
       <h1>Contact me</h1>
       <div class="contact-page">
           <img class="ii" src="/images/contact.png" alt="">
@@ -388,14 +390,6 @@ fetch('https://mybrand-be-2.onrender.com/api/blogs/', { mode: "cors" })
         console.error('Error fetching blogs:', error);
     });
 
-    </script>
-
-</script>
-
-      <script>
-        document.getElementById('clickableWord').addEventListener('click', function() {
-            window.location.href = 'Html/signin.html';
-        });
     </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
