@@ -8,6 +8,8 @@
     
     <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/singleblog.css">
+    <script src="https://kit.fontawesome.com/f6dcf461c1.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <a href="./../index.html"><div class="close"><ion-icon name="close-outline"></ion-icon></div></a>
@@ -21,15 +23,17 @@
                <h2></h2> 
                <p></p>
                <div>
-                    <ion-icon name="heart-outline" id="heartIcon"></ion-icon>
-                    <span id="likesCount">0</span> likes
+                    <ion-icon name="heart" id="heartIcon" ></ion-icon>
+                    <span id="likesCount" style="cursor: pointer;">0</span> likes
+                    
                 </div>
+                
                 <div class="ii">
                     <h4> Comments</h4>
                     <div class="line"></div>
                 </div>
                 <div class="message">
-                    <!-- Comments will be dynamically added here -->
+
                 </div>
             </div>
             <div class="comment-form">
@@ -48,13 +52,34 @@
             </div>
         </div>
     </div>
+<script>
+const heartIcon = document.getElementById('heartIcon');
 
+function handleClick() {
+    if (navigator.vibrate) {
+        navigator.vibrate(500); 
+    }
+
+    heartIcon.classList.add('enlarged');
+
+    heartIcon.style.color = 'red';
+
+    setTimeout(() => {
+        heartIcon.classList.remove('enlarged');
+        heartIcon.style.color = ''; 
+    }, 1000); 
+}
+
+
+heartIcon.addEventListener('click', handleClick);
+
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const blogId = urlParams.get('id');
 
-    // Fetch and display single blog
+
     function displaySingleBlog(blogId) {
         fetch(`https://mybrand-be-2.onrender.com/api/blogs/${blogId}`, { mode: "cors" })
             .then(res => res.json())
@@ -63,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelector('.blog-img img').alt = data.title;
                 document.querySelector('.blog-text h2').textContent = data.title;
                 document.querySelector('.blog-text p').textContent = data.content;
-                // Update likes count after displaying single blog
                 updateLikesCount(blogId);
             })
             .catch(error => {
@@ -74,13 +98,12 @@ document.addEventListener('DOMContentLoaded', function() {
     displaySingleBlog(blogId);
     displayComments(blogId);
 
-    // Event listener for form submission
+
     document.getElementById('myForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-        addComment(); // Call the addComment function
+        event.preventDefault(); 
+        addComment(); 
     });
 
-    // Event listener for liking the post
     const heartIcon = document.getElementById('heartIcon');
     heartIcon.addEventListener('click', function() {
         likePost(blogId);
@@ -94,7 +117,6 @@ function likePost(blogId) {
     .then(res => res.json())
     .then(data => {
         if (data && (data.success || data.message === 'Blog liked successfully')) {
-            // Update likes count after liking the post
             updateLikesCount(blogId);
         } else {
             console.error('Failed to like the post. Response:', data);
@@ -110,13 +132,13 @@ function displayComments(blogId) {
         .then(res => res.json())
         .then(data => {
             const messageContainer = document.querySelector('.message');
-            messageContainer.innerHTML = ''; // Clear previous comments
+            messageContainer.innerHTML = ''; 
 
             if (Array.isArray(data.comments)) {
                 data.comments.forEach(comment => {
                     const commentDiv = document.createElement('div');
                     commentDiv.classList.add('single-blog');
-                    const commentTime = new Date().toLocaleString(); // Client-side timestamp
+                    const commentTime = new Date().toLocaleString(); 
                     commentDiv.innerHTML = `
                         <div class="comment">
                             <div>${comment.name} <span>${commentTime}</span></div>
@@ -139,7 +161,7 @@ function updateLikesCount(blogId) {
         .then(res => res.json())
         .then(data => {
             const likesCountElement = document.getElementById('likesCount');
-            likesCountElement.textContent = data.likeCount || 0; // Assuming the response contains "likeCount"
+            likesCountElement.textContent = data.likeCount || 0; 
         })
         .catch(error => {
             console.error('Error fetching likes:', error);
@@ -148,14 +170,13 @@ function updateLikesCount(blogId) {
 
 
 function addComment(event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); 
 
     const fullName = document.getElementById('fullName').value.trim();
     const email = document.getElementById('email').value.trim();
     const commentText = document.getElementById('commentText').value.trim();
     const blogId = new URLSearchParams(window.location.search).get('id');
 
-    // Validation
     const nameError = document.getElementById('nameError');
     const emailError = document.getElementById('emailError');
     const commentError = document.getElementById('commentError');
@@ -168,7 +189,6 @@ function addComment(event) {
         return false;
     }
 
-    // Post the comment
     fetch(`https://mybrand-be-2.onrender.com/api/blogs/${blogId}/comments`, {
         method: 'POST',
         headers: {
@@ -184,20 +204,17 @@ function addComment(event) {
         if (!response.ok) {
             throw new Error('Failed to add comment');
         }
-        // Clear input fields
         document.getElementById('fullName').value = '';
         document.getElementById('email').value = '';
         document.getElementById('commentText').value = '';
-        // Show success message
         document.querySelector('.message').innerHTML = '<p>Your comment has been added successfully!</p>';
-        // Refresh comments after successful addition
         displayComments(blogId);
     })
     .catch(error => {
         console.error('Error adding comment:', error);
     });
 
-    return false; // Prevent form submission
+    return false; 
 }
 </script>
     
