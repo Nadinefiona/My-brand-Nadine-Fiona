@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/redux@4.1.2/dist/redux.min.js"></script>
+    <script src="https://unpkg.com/react-redux@7.2.6/dist/react-redux.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
 </head>
 <style>
   .blog-card a {
@@ -31,12 +39,13 @@
         <a class="header__logo" href="#"><img src="/images/logo.png" alt=""></a>
 
         <nav class="header__nav">
-          <a class="header__nav--link" href="#">Home</a>
-          <a class="header__nav--link" href="#">About</a>
-          <a class="header__nav--link" href="#">Portfolio</a>
-          <a class="header__nav--link" href="#">Blogs</a>
-          <a class="header__nav--link" href="#">Contact</a>
-          <a class="header__nav--link" href="/Html/signin.html" id="clickableWord"> Login</a>
+          <a class="header__nav--link" href="#home">Home</a>
+          <a class="header__nav--link" href="#about">About</a>
+          <a class="header__nav--link" href="#portfolio">Portfolio</a>
+          <a class="header__nav--link" href="#blog">Blogs</a>
+          <a class="header__nav--link" href="#contact">Contact</a>
+          <a class="header__nav--link" href="/Html/signin.html"> Login</a>
+          
         </nav>
   
         <div class="hamburger">
@@ -49,7 +58,7 @@
     </header>
 
 
-    <div class="page">
+    <div class="page" id="home">
       <div class="text">
       <h3>Hi👋, I’m a</h3>
       <h2>software developer</h2>
@@ -61,7 +70,7 @@
       </div>
     </div>
 
-    <h1>About</h1>
+    <h1 id="about">About</h1>
     <section class="personal-info overall-layout section__padding">
       <!-- <h2 class="personal-info__content--title section__title">
         About
@@ -118,7 +127,7 @@
     </section>
 
 
-    <div class="portfolio">
+    <div class="portfolio" id="portfolio">
       <div class="heade">
           <h2><img src="/images/port-icon.png" alt="">Portfolio</h2>
           <h4>A select number of projects</h4>
@@ -141,7 +150,7 @@
           </div>
       </div>
   </div>
-  <div class="blogs">
+  <div class="blogs" id="blog">
       <h1>Blogs</h1>
       <div class="all-cards" id="blogContainer" >
           <!-- <div class="blog-card">
@@ -204,74 +213,10 @@
               </div>
               <button>Read More</button>
           </div> -->
-          <div class="blog-card">
-            
-          </div>
       </div>
-      <!-- <div class="all-cards">
-          <div class="blog-card">
-              <img src="/images/blog-4.png" alt="">
-              <span><p>July 30, 2024</p> | Google </span>
-              <div class="details">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam evenietstias 
-              </div>
-              <div class="statistics">
-                <div id="likebtn">
-                  <ion-icon name="thumbs-up-outline"></ion-icon>
-                </div>
-                <input type="number" id="input1" value="4" name="">
-                <div id="dislikebtn">
-                  <ion-icon name="thumbs-down-outline"></ion-icon></div>
-                <input type="number" id="input2" value="1" name="">
-                <div id="likebtn">
-                  <ion-icon name="chatbox"></ion-icon>                </div>
-                <input type="number" id="input3" value="8" name="">
-              </div>
-              <button>Read More</button>
-          </div>
-          <div class="blog-card">
-              <img src="/images/blog-5.png" alt="">
-              <span><p>July 30, 2024</p> | Google </span>
-              <p class="details">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam evenietstias 
-              </p>
-              <div class="statistics">
-                <div id="likebtn">
-                  <ion-icon name="thumbs-up-outline"></ion-icon>
-                </div>
-                <input type="number" id="input1" value="4" name="">
-                <div id="dislikebtn">
-                  <ion-icon name="thumbs-down-outline"></ion-icon>                </div>
-                <input type="number" id="input2" value="1" name="">
-                <div id="likebtn">
-                  <ion-icon name="chatbox"></ion-icon>                </div>
-                <input type="number" id="input3" value="8" name="">
-              </div>
-              <button>Read More</button>
-          </div>
-          <div class="blog-card">
-              <img src="/images/blog-6.png" alt="">
-              <span><p>July 30, 2024</p> | Google </span>
-              <p class="details">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam evenietstias 
-              </p>
-              <div class="statistics">
-                <div id="likebtn">
-                  <ion-icon name="thumbs-up-outline"></ion-icon>
-                </div>
-                <input type="number" id="input1" value="4" name="">
-                <div id="dislikebtn">
-                  <ion-icon name="thumbs-down-outline"></ion-icon>                </div>
-                <input type="number" id="input2" value="1" name="">
-                <div id="likebtn">
-                  <ion-icon name="chatbox"></ion-icon>                </div>
-                <input type="number" id="input3" value="f8" name="">
-              </div>
-              <button>Read More</button>
-          </div>
-      </div> -->
+
   </div>
-  <div class="contact">
+  <div class="contact" id="contact">
       <h1>Contact me</h1>
       <div class="contact-page">
           <img class="ii" src="/images/contact.png" alt="">
@@ -314,25 +259,6 @@
 
    <script src="/javascript/contact.js"></script>
 
-   <script>
-    let likebtn = document.querySelector('#likebtn');
-    let dislikebtn = document.querySelector('#dislikebtn');
-    
-    let input1 = document.querySelector('#input1');
-    let input2 = document.querySelector('#input2');
-    
-    likebtn.addEventListener('click', () => {
-      input1.value = parseInt(input1.value) + 1;
-      input1.style.color = '#12ff00';
-    });
-    
-    dislikebtn.addEventListener('click', () => {
-      input2.value = parseInt(input2.value) + 1;
-      input2.style.color = '#ff0000';
-    });
-    
-   </script>
-
     <script>
       let nav = document.querySelector(".header__nav");
       let burger = document.querySelector(".hamburger");
@@ -349,55 +275,50 @@
        });
 
     </script>
+    <!-- <script>
+        fetch('https://mybrand-be-2.onrender.com/api/blogs/', { mode: "cors" })
+            .then(res => res.json())
+            .then(data => {
+                data.data.forEach(blog => {
+                    const blogCard = document.createElement('div');
+                    blogCard.className = 'blog-card';
 
+                    const img = document.createElement('img');
+                    img.src = blog.image; 
+                    img.alt = blog.title; 
 
- <script>
-fetch('https://mybrand-be-2.onrender.com/api/blogs/', { mode: "cors" })
-    .then(res => res.json())
-    .then(data => {
-        data.data.forEach(blog => {
-            const blogCard = document.createElement('div');
-            blogCard.className = 'blog-card';
+                    const details = document.createElement('div');
+                    details.className = 'details';
 
-            const img = document.createElement('img');
-            img.src = blog.image; 
-            img.alt = blog.title; 
+                    let truncatedContent = blog.content.substring(0, 110);
+                    if (blog.content.length > 110) {
+                        truncatedContent += '...';
+                    }
 
-            const details = document.createElement('div');
-            details.className = 'details';
+                    details.textContent = truncatedContent;
 
-            let truncatedContent = blog.content.substring(0, 110);
-            if (blog.content.length > 110) {
-                truncatedContent += '...';
-            }
+                    const readMoreBtn = document.createElement('a');
+                    readMoreBtn.href = `/Html/singleblog.html?id=${blog._id}`; 
+                    readMoreBtn.textContent = 'Read More';
 
-            details.textContent = truncatedContent;
+                    blogCard.appendChild(img);
+                    blogCard.appendChild(details);
+                    blogCard.appendChild(readMoreBtn);
 
-            const readMoreBtn = document.createElement('a');
-            readMoreBtn.href = `/Html/singleblog.html?id=${blog._id}`; 
-            readMoreBtn.textContent = 'Read More';
+                    document.getElementById('blogContainer').appendChild(blogCard);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching blogs:', error);
+            });
 
-            blogCard.appendChild(img);
-            blogCard.appendChild(details);
-            blogCard.appendChild(readMoreBtn);
+    </script>  -->
+    
 
-            document.getElementById('blogContainer').appendChild(blogCard);
-        });
-    })
-    .catch(error => {
-        console.error('Error fetching blogs:', error);
-    });
+    <script src="/javascript/blog.js" type="text/babel"></script>
 
-    </script>
-
-</script>
-
-      <script>
-        document.getElementById('clickableWord').addEventListener('click', function() {
-            window.location.href = 'Html/signin.html';
-        });
-    </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 </html>
