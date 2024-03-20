@@ -56,8 +56,6 @@
         </div>
         </div>
     </header>
-
-
     <div class="page" id="home">
       <div class="text">
       <h3>Hi👋, I’m a</h3>
@@ -275,44 +273,7 @@
        });
 
     </script>
-    <!-- <script>
-        fetch('https://mybrand-be-2.onrender.com/api/blogs/', { mode: "cors" })
-            .then(res => res.json())
-            .then(data => {
-                data.data.forEach(blog => {
-                    const blogCard = document.createElement('div');
-                    blogCard.className = 'blog-card';
-
-                    const img = document.createElement('img');
-                    img.src = blog.image; 
-                    img.alt = blog.title; 
-
-                    const details = document.createElement('div');
-                    details.className = 'details';
-
-                    let truncatedContent = blog.content.substring(0, 110);
-                    if (blog.content.length > 110) {
-                        truncatedContent += '...';
-                    }
-
-                    details.textContent = truncatedContent;
-
-                    const readMoreBtn = document.createElement('a');
-                    readMoreBtn.href = `/Html/singleblog.html?id=${blog._id}`; 
-                    readMoreBtn.textContent = 'Read More';
-
-                    blogCard.appendChild(img);
-                    blogCard.appendChild(details);
-                    blogCard.appendChild(readMoreBtn);
-
-                    document.getElementById('blogContainer').appendChild(blogCard);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching blogs:', error);
-            });
-
-    </script>  -->
+   
     
 
     <script src="/javascript/blog.js" type="text/babel"></script>
