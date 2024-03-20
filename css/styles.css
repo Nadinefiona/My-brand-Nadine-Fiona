@@ -10,7 +10,6 @@
     text-decoration: none;
  }
  :root {
-  /* Dynamic */
   --padding-d-l-v: calc(1rem + 6vh);
   --padding-d-l-h: calc(1rem + 6vw);
 
@@ -23,7 +22,6 @@
   --padding-d-s-h: calc(1rem + 1vw);
   --padding-d-s-v: calc(1rem + 1vh);
 
-  /* Static */
   --padding-st-l-h: 3rem;
   --padding-st-l-v: 2rem;
 
@@ -172,6 +170,7 @@ h1{
 
 
 /******* porfolio ********/
+
 .portfolio{
   background-color: #343D68;
   color: #ffffff;
@@ -238,7 +237,7 @@ h1{
 }
 
 
-/* Blogs */
+/************* Blogs ****************/
 
 .blogs{
   background-color: #F5F5F5;
@@ -320,7 +319,7 @@ h1{
   justify-content: center; 
 }
 
-/* contact */
+/*************** contact *********************/
 
 .contact{
   background-color: #F5F5F5;
@@ -368,6 +367,9 @@ h1{
 .contact .contact-page form button img{
   padding-left: 4px;
 }
+
+/************** footer ***********/
+
 
 .last{
   background-color: #F5F5F5;
@@ -445,9 +447,6 @@ h1{
   .hamburger {
     height: 5rem;
     width: 8rem;
-    /* top: 0rem;
-    right: 5rem;
-    left: -3rem; */
     left: 7rem;
     background-color: var(--color-secondary-m-2);
     padding: var(--padding-st-s-v);
@@ -484,7 +483,6 @@ h1{
     align-self: center;
   }
 
-  /* Dynamic Class */
   .display__nav {
     transform: translateX(0);
   }
